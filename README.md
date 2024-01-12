@@ -23,3 +23,6 @@ The main goal is to provide an overview of relevant classical as well as more mo
 **Preprocessing**: Various approaches to transform text exist. Among them are: BoW, AutoEncoders, Pre-Trained embeddings (Glove) and modern Pre-Trained embeddings from BERT. We show how to use each approach and provide comparisons regarding predictive accuracy.
 
 **Training / Hyperparameter Tuning**: Since default values make little sense, HP tuning is a standard process. We show how to unify both traditional models like RF with more modern approaches like CNN in a single scikit-learn pipeline.
+
+## Notes
+For docstrings I used Github Copilot and adjusted where necessary.
