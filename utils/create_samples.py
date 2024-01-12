@@ -1,6 +1,6 @@
 ### creates random samples (80/20) from the csv dataset in ./data/ and saves them in ./samples/
 ### the samples use a stratified split to ensure that the class distribution is the same in both sets
-### the relevant variables for stratifying are: score,PI,PE,PU,PEOU,ATT
+# TODO change this to a function --> should be done in cookiecutter template
 
 import pandas as pd
 import numpy as np
