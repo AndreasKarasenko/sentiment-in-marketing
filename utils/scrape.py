@@ -82,5 +82,5 @@ def get_imdb_reviews(movie_id: str, max_iter: int = 1000):
             data["rating"].append(rating.get_text(strip=True) if rating else "N/A")
 
         n += 1
-    
+
     return pd.DataFrame(data)
