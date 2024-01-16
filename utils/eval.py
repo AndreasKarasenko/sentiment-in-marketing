@@ -1,11 +1,15 @@
 ### evaluation functions for multi-class classification
 
-
+from typing import Union, List
 import numpy as np
 import sklearn.metrics as metrics
 
 
-def eval_metrics(y_true, y_pred):
+def eval_metrics(
+    y_true: Union[np.ndarray, List[int], List[float]],
+    y_pred: Union[np.ndarray, List[int], List[float]],
+    weighting: str = "weighted",
+):
     """Compute evaluation metrics for multi-class classification.
 
     Args:
@@ -13,15 +17,8 @@ def eval_metrics(y_true, y_pred):
         y_pred: predicted labels
     """
     acc = metrics.accuracy_score(y_true, y_pred)
-    f1 = metrics.f1_score(y_true, y_pred, average="weighted")
-    precision = metrics.precision_score(y_true, y_pred, average="weighted")
-    recall = metrics.recall_score(y_true, y_pred, average="weighted")
+    f1 = metrics.f1_score(y_true, y_pred, average=weighting)
+    precision = metrics.precision_score(y_true, y_pred, average=weighting)
+    recall = metrics.recall_score(y_true, y_pred, average=weighting)
     report = metrics.classification_report(y_true, y_pred)
     return acc, f1, precision, recall, report
-
-def weighted_score(probs):
-    """calculates the weighted score as a sum of
-    class probabilites multiplied by their respective index + 1
-    Example: porbs[0] = [0.1, 0.2, 0.7] -> weighted_score = 0.1*1 + 0.2*2 + 0.7*3"""
-    
-    
