@@ -1,21 +1,23 @@
 ### A function to load the data from data/samples/train.csv and data/samples/test.csv
 from typing import List
 import pandas as pd
+import json
+import gzip
 import os
 
 
-def load_data(config: dict, path: List[str]):
-    """Load the data from data/samples/train.csv and data/samples/test.csv
-    args:
-        config: config object with information about input / output variables
-        path: path to the data
-    return: train and test dataframes"""
+def amazon(config: dict, path: str):
+    """Load data from amazon review dataset. The dataset is stored as zipped json files."""
+    # Load data
+    with gzip.open(path, "rb") as f:
+        json_data = [json.loads(line) for line in f]
+    df = pd.DataFrame.from_dict(json_data)
+    
+    return df
 
-    # Load train and test data
-    train = pd.read_csv(path)
-    test = pd.read_csv(path)
-
-    train = train[config["input_variables"] + config["output_variables"]]
-    test = test[config["input_variables"] + config["output_variables"]]
-
-    return train, test
+def googleplay(config: dict, path: str):
+    """Load data from google play store review dataset. The dataset is stored as csv files."""
+    # Load data
+    df = pd.read_csv(path)    
+    
+    return df
