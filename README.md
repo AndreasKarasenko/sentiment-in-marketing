@@ -29,4 +29,4 @@ For docstrings I used Github Copilot and adjusted where necessary.
 
 Libraries like cuML promise speed ups by utilizing GPUs but also require more complicated setups. At the same time the scikit-learn implementations are by no means slow. If the setup proves to be problematic, we would recommend using the scikit-learn classes /functions instead. Thanks to the efforts of the cuML dev team, the code should be easily transferable.
 
-For an installation guide of cuML go [here]()
+For an installation guide of cuML go [here](./cuML_install.txt) or [here]()
