@@ -5,3 +5,5 @@ To run the example type the following command into the commandline from the top 
 ```bash
 python -m examples.end_to_end.main
 ```
+
+Alternatively look into the [main.ipynb](main.ipynb).
