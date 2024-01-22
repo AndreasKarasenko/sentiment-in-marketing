@@ -1,7 +1,8 @@
 ### function to save results (metrics, runtime, best parameters) from run_all.py or run.py to results/train/FILENAME
 ### where FILENAME is the name of the model, the construct that was learned, and the date and time
 ### the results are saved in a json file
-### also savess the gridsearch object as a pickle file
+### also saves the gridsearch object as a pickle file
+### TODO adjust for cuML
 import joblib
 
 def save_results(filename, model_name, construct, metrics, args, grid = None):
