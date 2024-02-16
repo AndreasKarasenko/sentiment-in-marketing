@@ -7,7 +7,7 @@ The following provides a brief description of some aspects.
 2. [Describe](#describe)
 
 ## [eval](eval.py)
-We provide a short script for eval metrics. Since we are in a text classification scenario, we are interested in [accuracy](#accuracy), [precision](#precision), [recall](#recall), and the [F1 score](#f1-score).
+We provide a short script for eval metrics. Since we are in a text classification scenario, we are interested in [accuracy](#accuracy), [precision](#precision), [recall](#recall), and the [F1 score](#f1-score). It expects an array of true labels and an array of predicted labels. It has an optional str parameter (weighting) for the averaging method. More on averaging [here](../examples/metrics/README.md).
 
 
 ### Accuracy
