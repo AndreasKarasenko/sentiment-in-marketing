@@ -8,13 +8,14 @@ import sklearn.metrics as metrics
 def eval_metrics(
     y_true: Union[np.ndarray, List[int], List[float]],
     y_pred: Union[np.ndarray, List[int], List[float]],
-    weighting: str = "weighted",
+    weighting: str = "binary",
 ):
     """Compute evaluation metrics for multi-class classification.
 
     Args:
         y_true: true labels
         y_pred: predicted labels
+        weighting: type of averaging for multi-class classification
     """
     acc = metrics.accuracy_score(y_true, y_pred)
     f1 = metrics.f1_score(y_true, y_pred, average=weighting)
