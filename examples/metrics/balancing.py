@@ -36,12 +36,11 @@ y_pred = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 f1 = metrics.f1_score(y_true, y_pred, average="weighted")
 print(f"Weighted multi-class F1 score (heavily biased): {f1:.2f}")
 
+
 # we can also demonstrate the effect of class imbalance on the weighted f1 score by using the eval_metrics function
 # we can see that the weighted f1 score is biased towards the majority class
 # this is also reflected in the precision and recall scores
-def eval_metrics(
-    y_true: np.ndarray, y_pred: np.ndarray, weighting: str = "binary"
-):
+def eval_metrics(y_true: np.ndarray, y_pred: np.ndarray):
     """Compute evaluation metrics for multi-class classification.
 
     Args:
@@ -59,5 +58,9 @@ def eval_metrics(
     acc = metrics.accuracy_score(y_true, y_pred)
     return acc, f1, precision, recall
 
+
 for i in eval_metrics(y_true, y_pred):
     print(i)
+
+# in the case of extreme imbalance where the minority class is not
+# predicted at all, the weighted f1 score still be high
