@@ -8,3 +8,13 @@ If you don't comply with these licenses, you could potentially face legal issues
 
 In our paper we used libraries that are open source, commercially  usable and ideally don't require you to share source code.
 These include the MIT, BSD 3-Clause "New" or "Revised", and Apache License (2.0)
+
+| Library | License |
+| ------- | ------- |
+| Scikit-Learn | [BSD 3-Clause "New" or "Revised" License](https://github.com/scikit-learn/scikit-learn/blob/main/COPYING)
+| VADER | [MIT License](https://github.com/cjhutto/vaderSentiment/blob/master/LICENSE.txt)
+| Tensorflow | [Apache License 2.0](https://github.com/tensorflow/examples/blob/master/LICENSE)
+| Google-Play-Scraper | [MIT License](https://github.com/JoMingyu/google-play-scraper/blob/master/LICENSE)
+| transformers | [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE)
+
+Models like BERT and it's derivatives are generally under Apache 2.0.
