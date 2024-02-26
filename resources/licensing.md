@@ -16,5 +16,7 @@ These include the MIT, BSD 3-Clause "New" or "Revised", and Apache License (2.0)
 | Tensorflow | [Apache License 2.0](https://github.com/tensorflow/examples/blob/master/LICENSE)
 | Google-Play-Scraper | [MIT License](https://github.com/JoMingyu/google-play-scraper/blob/master/LICENSE)
 | transformers | [Apache License 2.0](https://github.com/huggingface/transformers/blob/main/LICENSE)
+| scikit-llm | [MIT License](https://github.com/iryna-kondr/scikit-llm/blob/main/LICENSE)
+| scikeras | [MIT License](https://github.com/adriangb/scikeras/blob/master/LICENSE)
 
 Models like BERT and it's derivatives are generally under Apache 2.0.
