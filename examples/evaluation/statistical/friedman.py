@@ -32,14 +32,6 @@ print(results)
 # Run the Friedman test on the results
 statistic, p_value = run_friedman_test(*results)
 
-
-print(f"Test statistic: {statistic}")
-print(f"P-value: {p_value}")
-
-
-# Run the Friedman test on the results
-statistic, p_value = run_friedman_test(*results)
-
 print(f"Friedman Test statistic: {statistic}")
 print(f"Friedman Test P-value: {p_value}")
 
