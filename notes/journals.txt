@@ -1,3 +1,4 @@
+A+ or highly relevant
 source:"Journal of Marketing Research"
 source:"Journal of Marketing"
 source:"Journal of Consumer Research"
@@ -7,3 +8,9 @@ source:"International Journal of Research in Marketing"
 source:"Decision Support Systems"
 source:"Journal of Business Research"
 source:"Journal of Retailing and Consumer Services"
+
+A
+source:"Journal of Applied Psychology"
+source:"Journal of Service Research"
+source:"Journal of Product Innovation Management"
+source:"Journal of Consumer Psychology"
