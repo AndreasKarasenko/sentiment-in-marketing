@@ -1,10 +1,14 @@
-from models import vader
+from models import vader, naive_bayes, logistic_regression, svm
 
 DICTIONARY_MODELS = {
-    "Vader": vader.vader_model,
+    "Vader": vader.model,
 }
 
-MODELS = {}
+MODELS = {
+    "NB": naive_bayes.model,
+    "LR": logistic_regression.model,
+    "SVM": svm.model,
+}
 
 DNN_MODELS = {}
 

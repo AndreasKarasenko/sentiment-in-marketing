@@ -1,6 +1,6 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
-def vader_model():
+def model():
     """Returns a vader sentiment analysis model"""
     return SentimentIntensityAnalyzer()
