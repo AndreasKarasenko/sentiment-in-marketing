@@ -31,3 +31,6 @@ search_space.json
     }
 }
 ```
+
+the ```clf__``` prefix is a result of the pipeline we use. It simply denotes the classifier and its parameters.
+For NB it is NB.alpha or clf__alpha. If we called it "classifier" instead it would be ```classifier__```. The respective hyperparameters can be found in the model documentation (either online or on your local machine).

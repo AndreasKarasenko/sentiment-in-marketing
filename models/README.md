@@ -1,3 +1,6 @@
+# Sentiment Models
+A written overview can be found [here](./MODELS.md), while the hyperparameter specification can be found in the config folder under [search space](../config/model_config/search_space.json). Read also the associated search space [README](../config/model_config/README.md).
+
 Models should be defined individually as .py files and then imported using the \_\_init__.py file
 
 ```python
