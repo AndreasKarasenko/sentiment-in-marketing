@@ -1,10 +1,12 @@
 # general information
 # https://docs.rapids.ai/install#pip-install
-# We used Python 3.10.8 with CUDA 12.2 and ran the following command from the terminal.
+# We used Python 3.10.12 with CUDA 11.8 and ran the following command from the terminal.
+
 
 pip install \
     --extra-index-url=https://pypi.nvidia.com \
-    cudf-cu12==23.12.* dask-cudf-cu12==23.12.* cuml-cu12==23.12.* \
-    cugraph-cu12==23.12.* cuspatial-cu12==23.12.* cuproj-cu12==23.12.* \
-    cuxfilter-cu12==23.12.* cucim-cu12==23.12.* pylibraft-cu12==23.12.* \
-    raft-dask-cu12==23.12.*
+    cudf-cu11==24.2.* dask-cudf-cu11==24.2.* cuml-cu11==24.2.* \
+    cugraph-cu11==24.2.* cuspatial-cu11==24.2.* cuproj-cu11==24.2.* \
+    cuxfilter-cu11==24.2.* cucim-cu11==24.2.* pylibraft-cu11==24.2.* \
+    raft-dask-cu11==24.2.*
+

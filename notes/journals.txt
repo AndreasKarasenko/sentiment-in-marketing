@@ -7,7 +7,6 @@ source:"Journal of Retailing and Consumer Services"
 source:"International Journal of Research in Marketing"
 source:"Decision Support Systems"
 source:"Journal of Business Research"
-source:"Journal of Retailing and Consumer Services"
 
 A
 source:"Journal of Applied Psychology"
