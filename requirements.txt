@@ -8,5 +8,6 @@ scikit-posthocs==0.8.0
 vadersentiment==3.3.2
 lime
 tensorflow[and-cuda]==2.14
+tqdm==4.66.2
 
 # For the cuML requirements see the comments in ./cuML_install.txt

@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def describe(df: pd.DataFrame, text_col: str = "text", score_col: str = "score", plot: bool = False):
+def describe(df: pd.DataFrame, text_col: str = "review", score_col: str = "rating", plot: bool = False):
     """Descriptive analysis for a pandas DataFrame.
 
     Args:
@@ -44,6 +44,11 @@ def describe(df: pd.DataFrame, text_col: str = "text", score_col: str = "score",
     outlier = skewed & kurtotic
     high_cardinality = n_unique_score > n_rows / 2
     highly_correlated = stats_score["std"] > stats_score["mean"]
+    
+    # get word statistics for 'text' column
+    num_words = df[text_col].astype(str).apply(lambda x: len(x.split()))
+    avg_num_words = num_words.mean()
+    std_num_words = num_words.std()
 
     # if plot is True, plot a histogram of the 'score' column
     if plot:
@@ -70,4 +75,6 @@ def describe(df: pd.DataFrame, text_col: str = "text", score_col: str = "score",
         "outlier": outlier,
         "high_cardinality": high_cardinality,
         "highly_correlated": highly_correlated,
+        "avg_num_words": avg_num_words,
+        "std_num_words": std_num_words,
     }
