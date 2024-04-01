@@ -1,12 +1,43 @@
-from urllib import response
+from tqdm import tqdm
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
-from google_play_scraper import Sort, reviews_all
+from google_play_scraper import Sort, reviews
+
+# TODO check for yourself if the bug has been fixed
+# https://github.com/JoMingyu/google-play-scraper/issues/209
+# def get_playstore_reviews(
+#     app: str, lang: str = "de", country: str = "de"
+# ) -> pd.DataFrame:
+#     """
+#     Fetches all reviews for a specific app from the Google Play Store and returns them as a pandas DataFrame.
+
+#     Parameters:
+#     app (str): The ID of the app for which to fetch the reviews.
+#     lang (str, optional): The language in which to fetch the reviews. Defaults to 'de'.
+#     country (str, optional): The country for which to fetch the reviews. Defaults to 'de'.
+
+#     Returns:
+#     df: A DataFrame containing all the reviews.
+#     """
+#     result = reviews_all(
+#         app_id=app,
+#         sleep_milliseconds=0,
+#         lang=lang,
+#         country=country,
+#         sort=Sort.NEWEST,
+#     )
+
+#     df = pd.DataFrame(result)
+#     df = df.rename(columns={"at": "date"})  # at is a pandas argument
+#     df["year"] = df.date.apply(lambda x: x.year)
+#     return df
+
+# current fix for google play:
 
 
 def get_playstore_reviews(
-    app: str, lang: str = "de", country: str = "de"
+    app: str, lang: str = "de", country: str = "de", reviews_count: int = 25000
 ) -> pd.DataFrame:
     """
     Fetches all reviews for a specific app from the Google Play Store and returns them as a pandas DataFrame.
@@ -19,17 +50,27 @@ def get_playstore_reviews(
     Returns:
     df: A DataFrame containing all the reviews.
     """
-    result = reviews_all(
-        app_id=app,
-        sleep_milliseconds=0,
-        lang=lang,
-        country=country,
-        sort=Sort.NEWEST,
-    )
+    result = []
+    continuation_token = None
+
+    with tqdm(total=reviews_count, position=0, leave=True) as pbar:
+        while len(result) < reviews_count:
+            new_result, continuation_token = reviews(
+                app,
+                continuation_token=continuation_token,
+                lang=lang,
+                country=country,
+                sort=Sort.NEWEST,
+                filter_score_with=None,
+                count=150,
+            )
+            if not new_result:
+                df = pd.DataFrame(result)
+                return df
+            result.extend(new_result)
+            pbar.update(len(new_result))
 
     df = pd.DataFrame(result)
-    df = df.rename(columns={"at": "date"})  # at is a pandas argument
-    df["year"] = df.date.apply(lambda x: x.year)
     return df
 
 
