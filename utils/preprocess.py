@@ -88,7 +88,8 @@ def hotel_data(data: str):
     df = df.loc[:,["reviews.rating", "reviews.text", "reviews.date"]]
     df.columns = ["rating", "review", "date"]
     
-    df["date"] = pd.to_datetime(df["date"], format="mixed").dt.date
+    df["date"] = pd.to_datetime(df["date"]).dt.date
+    df.rating = df.rating.round(0).astype(int)
     
     return df
 
