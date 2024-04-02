@@ -1,0 +1,22 @@
+{
+    "MultinomialNB": {
+        "hyperparameters": {
+            "clf__alpha": [0.3, 0.2, 1e-1, 1e-2, 1e-3, 1e-4]
+        }
+    },
+    "Decision Tree": {
+        "hyperparameters": {
+            "clf__max_depth": [5, 10, 15, 20, 25],
+            "clf__min_samples_split": [2, 5, 10],
+            "clf__max_features": ["auto", "log2"]
+        }
+    },
+    "RF": {
+        "hyperparameters": {
+            "clf__n_estimators": [100, 200, 300, 400, 500],
+            "clf__max_features": ["auto", "log2"],
+            "clf__max_depth": [5, 10, 15, 20, 25],
+            "clf__min_samples_split": [2, 5, 10]
+        }
+    }
+}
