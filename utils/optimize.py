@@ -16,7 +16,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics
 
-def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1):
+def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1, n_jobs: int = 1):
     """Run grid search cross validation on a model.
 
     Args:
@@ -51,6 +51,7 @@ def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1)
         scoring=scoring,
         refit="F1",  # refit the model on the best F1 score
         return_train_score=True,
+        n_jobs=n_jobs
     )
 
     # Fit the model

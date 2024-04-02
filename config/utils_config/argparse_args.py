@@ -6,5 +6,6 @@ arguments = [
     {"arg": "--input_var", "type": str, "default": "content", "help": "Name of the input variable"},
     {"arg": "--target_var", "type": str, "default": "label", "help": "Name of the target variable"},
     {"arg": "--verbose", "type": int, "default": 1, "help": "Verbosity level"},
-    {"arg": "--data_config", "type": str, "default": "./config/data_config/", "help": "Input and output data config directory"},
+    {"arg": "--njobs", "type": int, "default": 1, "help": "Number of jobs for gridsearch"},
+    {"arg": "--data_config", "type": str, "default": "./config/data_config/", "help": "Input and output data and dataset names config directory"},
 ]

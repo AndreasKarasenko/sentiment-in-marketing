@@ -8,7 +8,7 @@ import sklearn.metrics as metrics
 def eval_metrics(
     y_true: Union[np.ndarray, List[int], List[float]],
     y_pred: Union[np.ndarray, List[int], List[float]],
-    weighting: str = "binary",
+    weighting: str = "weighted",
 ):
     """Compute evaluation metrics for multi-class classification.
 

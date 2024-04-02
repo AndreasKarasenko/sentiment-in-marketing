@@ -6,12 +6,12 @@ Since I'm mostly working with csv files they usually specify pandas DataFrame co
 input_config.json
 ```json
 {
-    "input_var": "text"
+    "input_var": "review"
 }
 ```
 target_config.json
 ```json
 {
-    "target_vars": ["ATT", "BI", "PE", "PEOU", "PI", "PU"]
+    "target_vars": ["rating"]
 }
 ```

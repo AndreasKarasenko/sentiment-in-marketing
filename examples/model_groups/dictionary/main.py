@@ -4,7 +4,7 @@ from utils.dataloader import googleplay
 from utils.describe import describe
 
 # load the data
-df = googleplay(config=None, path="./data/ikea_en.csv")
+df = googleplay(config=None, path="./data/ikea_reviews.csv")
 df = df.iloc[:1000,:] # subsample for faster processing
 print(describe(df, "content", score_col="score"))
 

@@ -5,7 +5,7 @@
 ### TODO adjust for cuML
 import joblib
 
-def save_results(filename, model_name, construct, metrics, args, grid = None):
+def save_results(filename, model_name, dataset, metrics, args, grid = None):
     """Save results (metrics, runtime, best parameters) from run_all.py or run.py to results/train/FILENAME
     where FILENAME is the name of the model, the construct that was learned, and the date and time
     the results are saved in a json file
@@ -34,7 +34,7 @@ def save_results(filename, model_name, construct, metrics, args, grid = None):
             json.dump(
                 {
                     "model": model_name,
-                    "construct": construct,
+                    "dataset": dataset,
                     "metrics": metrics,
                     "best_hyperparameters": grid.best_params_,
                     "arguments": vars(args),
@@ -60,7 +60,7 @@ def save_results(filename, model_name, construct, metrics, args, grid = None):
             json.dump(
                 {
                     "model": model_name,
-                    "construct": construct,
+                    "dataset": dataset,
                     "metrics": metrics,
                     "arguments": vars(args),
                 },
