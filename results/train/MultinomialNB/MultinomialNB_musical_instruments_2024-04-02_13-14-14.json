@@ -1,0 +1,54 @@
+{
+    "model": "MultinomialNB",
+    "dataset": "musical_instruments",
+    "metrics": [
+        0.6613060428849903,
+        0.5674958809878603,
+        0.5505937447831063,
+        0.6613060428849903,
+        "              precision    recall  f1-score   support\n\n         0.0       1.00      0.04      0.08        51\n         1.0       0.00      0.00      0.00        53\n         2.0       0.17      0.01      0.01       140\n         3.0       0.22      0.07      0.10       411\n         4.0       0.69      0.95      0.80      1397\n\n    accuracy                           0.66      2052\n   macro avg       0.42      0.21      0.20      2052\nweighted avg       0.55      0.66      0.57      2052\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.001
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.1901971766436497,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', MultinomialNB(alpha=0.001))])",
+    "best_params": {
+        "clf__alpha": 0.001
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 0.2387251853942871,
+    "mean_fit_time": [
+        0.48390932083129884,
+        0.559105396270752,
+        0.60240797996521,
+        0.6053919553756714,
+        0.6021671533584595,
+        0.5140802145004273
+    ],
+    "multimetric": true,
+    "best_index": 4,
+    "cv": 10,
+    "n_splits": 10
+}

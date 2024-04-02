@@ -5,7 +5,7 @@ DICTIONARY_MODELS = {
 }
 
 MODELS = {
-    "NB": naive_bayes.model,
+    "MultinomialNB": naive_bayes.model,
     "LR": logistic_regression.model,
     "SVM": svm.model,
 }
