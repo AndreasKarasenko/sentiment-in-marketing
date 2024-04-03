@@ -99,25 +99,24 @@ for i in datasets:
     y_test = test[target_vars]
 
     # get the model
-    model_func = MODELS["MultinomialNB"]
-    model_instance = model_func()
-    # run the gridsearchcv
-    start = time.time()
-    grid, metrics = run_gridsearchcv(
-        model_instance,
-        search_space["MultinomialNB"]["hyperparameters"],
-        X_train,
-        y_train,
-        X_test,
-        y_test,
-        verbose=args.verbose,
-        n_jobs=args.njobs,
-    )
-    end = time.time()
-    walltime = end - start
-    print(grid.best_params_)
-    print(metrics[-1])
-    filename = (
-        "MultinomialNB" + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    )
-    save_results(filename, "MultinomialNB", i, metrics, args, walltime, grid)
+    for model_name, model_func in MODELS.items():
+        model_instance = model_func()
+        start = time.time()
+        grid, metrics = run_gridsearchcv(
+            model_instance,
+            search_space[model_name]["hyperparameters"],
+            X_train,
+            y_train,
+            X_test,
+            y_test,
+            verbose=args.verbose,
+            n_jobs=args.njobs,
+        )
+        end = time.time()
+        walltime = end - start
+        print(grid.best_params_)
+        print(metrics[-1])
+        filename = (
+            model_name + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        )
+        save_results(filename, model_name, i, metrics, args, walltime, grid)

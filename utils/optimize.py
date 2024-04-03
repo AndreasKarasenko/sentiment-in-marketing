@@ -46,7 +46,7 @@ def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1,
     grid_search = GridSearchCV(
         pipeline,
         params,
-        cv=10,
+        cv=5,
         verbose=verbose,
         scoring=scoring,
         refit="F1",  # refit the model on the best F1 score
