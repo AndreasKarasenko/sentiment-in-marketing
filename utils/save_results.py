@@ -3,9 +3,20 @@
 ### the results are saved in a json file
 ### also saves the gridsearch object as a pickle file
 ### TODO adjust for cuML
+import json
+
 import joblib
 
-def save_results(filename, model_name, dataset, metrics, args, walltime, grid = None):
+
+def save_results(
+    filename: str,
+    model_name: str,
+    dataset: str,
+    metrics: list,
+    args: json,
+    walltime: float,
+    grid=None,
+):
     """Save results (metrics, runtime, best parameters) from run_all.py or run.py to results/train/FILENAME
     where FILENAME is the name of the model, the construct that was learned, and the date and time
     the results are saved in a json file
@@ -18,8 +29,8 @@ def save_results(filename, model_name, dataset, metrics, args, walltime, grid = 
         args: arguments from argparse
         grid: optional gridsearchcv results object
     """
-    import os
     import json
+    import os
     from datetime import datetime
 
     ### create a directory to save the results
@@ -27,7 +38,8 @@ def save_results(filename, model_name, dataset, metrics, args, walltime, grid = 
         os.makedirs("results/train/" + model_name)
 
     ### save the results
-    with open("results/train/" + model_name + "/" + filename + ".json",
+    with open(
+        "results/train/" + model_name + "/" + filename + ".json",
         "w",
     ) as f:
         if grid:
@@ -39,7 +51,9 @@ def save_results(filename, model_name, dataset, metrics, args, walltime, grid = 
                     "metrics": metrics,
                     "best_hyperparameters": grid.best_params_,
                     "arguments": vars(args),
-                    "search_space": json.load(open(args.config_dir, "r"))[model_name]["hyperparameters"],
+                    "search_space": json.load(open(args.config_dir, "r"))[model_name][
+                        "hyperparameters"
+                    ],
                     # "grid_search_results": grid.cv_results_,
                     "best_score": grid.best_score_,
                     "best_estimator": str(grid.best_estimator_),
