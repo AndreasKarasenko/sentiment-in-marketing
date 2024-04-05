@@ -1,4 +1,13 @@
-from models import vader, naive_bayes, logistic_regression, svm, dt, rf, xgboost, complement_Bayes
+from models import (
+    complement_Bayes,
+    dt,
+    logistic_regression,
+    naive_bayes,
+    rf,
+    svm,
+    vader,
+    xgboost,
+)
 
 DICTIONARY_MODELS = {
     "Vader": vader.model,
@@ -7,11 +16,11 @@ DICTIONARY_MODELS = {
 MODELS = {
     # "MultinomialNB": naive_bayes.model,
     # "ComplementNB": complement_Bayes.model,
-    "LR": logistic_regression.model,
-    "SVM": svm.model,
-    "Decision Tree": dt.dt_model(),
-    "RF": rf.rf_model(),
-    "XGBoost": xgboost.xgboost_model()
+    # "LR": logistic_regression.model,
+    # "SVM": svm.model,
+    # "Decision Tree": dt.dt_model,
+    "RF": rf.rf_model,
+    # "XGBoost": xgboost.xgboost_model,
 }
 
 DNN_MODELS = {}

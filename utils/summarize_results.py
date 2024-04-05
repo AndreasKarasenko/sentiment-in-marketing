@@ -60,6 +60,7 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
         metrics = {
             d["dataset"]: d["metrics"][:-1] for d in data
         }  # exclude the last metric which is the classification report
+        print(metrics)
         df = pd.DataFrame(metrics)
         df.index = ["ACC", "F1", "PREC", "REC"]
         if mode == "average":

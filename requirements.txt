@@ -11,6 +11,11 @@ tensorflow[and-cuda]==2.14
 tqdm==4.66.2
 nltk==3.8.1
 xgboost==2.0.3
-# be sure to first install punkt --> see setup.py
 
+# be sure to first install punkt --> see setup.py
 # For the cuML requirements see the comments in ./cuML_install.txt
+
+# for formatting
+black==24.3.0
+# for saving to xlsx
+openpyxl==3.1.2
