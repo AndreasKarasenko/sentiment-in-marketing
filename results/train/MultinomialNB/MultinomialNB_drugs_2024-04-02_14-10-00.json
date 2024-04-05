@@ -1,0 +1,55 @@
+{
+    "model": "MultinomialNB",
+    "dataset": "drugs",
+    "walltime": 10.004700183868408,
+    "metrics": [
+        0.41686814208666545,
+        0.35523896790416926,
+        0.42937428797948723,
+        0.41686814208666545,
+        "              precision    recall  f1-score   support\n\n           0       0.53      0.52      0.52      1472\n           1       0.50      0.12      0.20       445\n           2       0.37      0.06      0.10       428\n           3       0.72      0.08      0.15       339\n           4       0.41      0.10      0.16       569\n           5       0.56      0.07      0.13       426\n           6       0.58      0.08      0.14       640\n           7       0.33      0.15      0.20      1224\n           8       0.30      0.24      0.27      1822\n           9       0.42      0.84      0.56      3389\n\n    accuracy                           0.42     10754\n   macro avg       0.47      0.23      0.24     10754\nweighted avg       0.43      0.42      0.36     10754\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.001
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.22921914883861844,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', MultinomialNB(alpha=0.001))])",
+    "best_params": {
+        "clf__alpha": 0.001
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 1.1755955219268799,
+    "mean_fit_time": [
+        2.0200244903564455,
+        2.2475356578826906,
+        2.359230470657349,
+        2.4241148471832275,
+        2.31868052482605,
+        1.670526647567749
+    ],
+    "multimetric": true,
+    "best_index": 4,
+    "cv": 5,
+    "n_splits": 5
+}

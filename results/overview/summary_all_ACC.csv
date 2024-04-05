@@ -1,0 +1,7 @@
+,automotive,ikea_reviews,twitter,patio_lawn_garden,luxury_beauty,reddit,instant_video,lidl,hotel,musical_instruments,office_products,drugs
+RF,67.38,,,,,,,,,,,
+ComplementNB,60.1,69.36,78.96,52.92,66.97,71.93,58.62,66.68,53.35,58.14,58.85,41.18
+Decision Tree,57.29,63.01,68.99,44.1,64.93,63.73,47.12,60.46,40.95,56.87,48.06,34.38
+LR,63.38,,,,,,,,,,,
+MultinomialNB,66.02,73.79,75.99,53.87,67.34,73.13,57.61,68.75,52.6,65.59,57.37,41.69
+SVM,64.4,,,,,,,,,,,

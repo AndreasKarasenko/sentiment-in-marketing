@@ -1,0 +1,55 @@
+{
+    "model": "MultinomialNB",
+    "dataset": "patio_lawn_garden",
+    "walltime": 4.72423529624939,
+    "metrics": [
+        0.5386646548472275,
+        0.4709917165042828,
+        0.48830385884225586,
+        0.5386646548472275,
+        "              precision    recall  f1-score   support\n\n         0.0       0.75      0.06      0.10       109\n         1.0       0.22      0.01      0.03       145\n         2.0       0.38      0.12      0.18       343\n         3.0       0.34      0.24      0.28       650\n         4.0       0.59      0.87      0.71      1404\n\n    accuracy                           0.54      2651\n   macro avg       0.46      0.26      0.26      2651\nweighted avg       0.49      0.54      0.47      2651\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.001
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.25724375672831307,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', MultinomialNB(alpha=0.001))])",
+    "best_params": {
+        "clf__alpha": 0.001
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 0.5617406368255615,
+    "mean_fit_time": [
+        0.9541662693023681,
+        1.0871967792510986,
+        1.209463930130005,
+        1.1963512897491455,
+        1.1807160377502441,
+        0.8195393562316895
+    ],
+    "multimetric": true,
+    "best_index": 4,
+    "cv": 5,
+    "n_splits": 5
+}

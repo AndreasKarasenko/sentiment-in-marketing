@@ -1,0 +1,55 @@
+{
+    "model": "ComplementNB",
+    "dataset": "hotel",
+    "walltime": 1.4624149799346924,
+    "metrics": [
+        0.5335,
+        0.5016350202164505,
+        0.5013055642223456,
+        0.5335,
+        "              precision    recall  f1-score   support\n\n           0       0.32      0.63      0.42       101\n           1       0.21      0.14      0.17       120\n           2       0.39      0.29      0.33       279\n           3       0.40      0.23      0.29       563\n           4       0.65      0.83      0.73       937\n\n    accuracy                           0.53      2000\n   macro avg       0.39      0.42      0.39      2000\nweighted avg       0.50      0.53      0.50      2000\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.2
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.39876257215583555,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', ComplementNB(alpha=0.2))])",
+    "best_params": {
+        "clf__alpha": 0.2
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 0.16201114654541016,
+    "mean_fit_time": [
+        0.25297083854675295,
+        0.29050498008728026,
+        0.3188499927520752,
+        0.3264148235321045,
+        0.3294025421142578,
+        0.2593527317047119
+    ],
+    "multimetric": true,
+    "best_index": 1,
+    "cv": 5,
+    "n_splits": 5
+}

@@ -1,0 +1,55 @@
+{
+    "model": "MultinomialNB",
+    "dataset": "lidl",
+    "walltime": 1.595834732055664,
+    "metrics": [
+        0.6874724629167278,
+        0.6453543119731604,
+        0.6228485594370256,
+        0.6874724629167278,
+        "              precision    recall  f1-score   support\n\n           0       0.59      0.75      0.66      1095\n           1       0.11      0.05      0.07       309\n           2       0.21      0.11      0.14       454\n           3       0.30      0.14      0.19       959\n           4       0.80      0.92      0.85      3992\n\n    accuracy                           0.69      6809\n   macro avg       0.40      0.39      0.38      6809\nweighted avg       0.62      0.69      0.65      6809\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.001
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.3919435415780297,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', MultinomialNB(alpha=0.001))])",
+    "best_params": {
+        "clf__alpha": 0.001
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 0.1829080581665039,
+    "mean_fit_time": [
+        0.2553868293762207,
+        0.297877836227417,
+        0.33123130798339845,
+        0.33946809768676756,
+        0.34187841415405273,
+        0.2742887020111084
+    ],
+    "multimetric": true,
+    "best_index": 4,
+    "cv": 5,
+    "n_splits": 5
+}

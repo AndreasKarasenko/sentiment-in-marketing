@@ -1,0 +1,55 @@
+{
+    "model": "ComplementNB",
+    "dataset": "twitter",
+    "walltime": 0.8519363403320312,
+    "metrics": [
+        0.7896174863387978,
+        0.7800690335346545,
+        0.7787256347335133,
+        0.7896174863387978,
+        "              precision    recall  f1-score   support\n\n           0       0.84      0.91      0.88      1889\n           1       0.65      0.46      0.54       580\n           2       0.69      0.69      0.69       459\n\n    accuracy                           0.79      2928\n   macro avg       0.73      0.69      0.70      2928\nweighted avg       0.78      0.79      0.78      2928\n"
+    ],
+    "best_hyperparameters": {
+        "clf__alpha": 0.2
+    },
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": -1,
+        "data_config": "./config/data_config/"
+    },
+    "search_space": {
+        "clf__alpha": [
+            0.3,
+            0.2,
+            0.1,
+            0.01,
+            0.001,
+            0.0001
+        ]
+    },
+    "best_score": 0.6926001899267722,
+    "best_estimator": "Pipeline(steps=[('vect', CountVectorizer()), ('tfidf', TfidfTransformer()),\n                ('clf', ComplementNB(alpha=0.2))])",
+    "best_params": {
+        "clf__alpha": 0.2
+    },
+    "scorer": "{'Accuracy': make_scorer(accuracy_score), 'Precision': make_scorer(precision_score, pos_label=None, average=macro), 'Recall': make_scorer(recall_score, pos_label=None, average=macro), 'F1': make_scorer(f1_score, pos_label=None, average=macro)}",
+    "refit_time": 0.0957479476928711,
+    "mean_fit_time": [
+        0.14126439094543458,
+        0.15600004196166992,
+        0.1736985206604004,
+        0.18131308555603026,
+        0.1888507843017578,
+        0.14425792694091796
+    ],
+    "multimetric": true,
+    "best_index": 1,
+    "cv": 5,
+    "n_splits": 5
+}
