@@ -34,9 +34,13 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
     models.remove("__init__.py")  # except for __init__.py
 
     all_results = []
+    all_times = []
+    mean_times = []
     for model in models:
         files = []
         model_dir = os.path.join("results/train", model)
+        # all json files for a model
+        # os.listdir lists all files in the model directory
         model_results = [
             file for file in os.listdir(model_dir) if file.endswith(".json")
         ]
@@ -54,21 +58,27 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
                     for file in dataset_results
                 ]
             )
+            # get the latest dataset results
             files.append(dataset_results[latest_dataset])
 
         data = [json.load(open(os.path.join(model_dir, file))) for file in files]
         metrics = {
             d["dataset"]: d["metrics"][:-1] for d in data
         }  # exclude the last metric which is the classification report
-        print(metrics)
+        time = {d["dataset"]: d["walltime"] for d in data}
         df = pd.DataFrame(metrics)
         df.index = ["ACC", "F1", "PREC", "REC"]
+        df_time = pd.DataFrame(time, index=[0])
         if mode == "average":
             df = df.mean(axis=1)
             all_results.append({model: df.apply(lambda x: round(x * 100, 2))})
+            all_times.append({model: df_time.sum(axis=1)})
+            mean_times.append({model: df_time.mean(axis=1)})
+            # print(all_times)
         elif mode == "all":
             df = df.apply(lambda x: x.apply(lambda y: round(y * 100, 2)))
             all_results.append({model: df})
+            all_times.append({model: df_time})
         else:
             raise ValueError("mode must be either 'average' or 'all'")
     # print(type(all_results))
@@ -76,7 +86,18 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
         df = pd.DataFrame()
         for i in all_results:
             df = pd.concat([df, pd.DataFrame(i)], axis=1)
+        df_time = pd.DataFrame()
+        for i in all_times:
+            df_time = pd.concat([df_time, pd.DataFrame(i)], axis=1)
+        df_mean = pd.DataFrame()
+        for i in mean_times:
+            df_mean = pd.concat([df_mean, pd.DataFrame(i)], axis=1)
+        dfMean = df_mean.T
+        dfMean.rename(columns={0: "mean_time"}, inplace=True)
+        dfTime = df_time.T
+        dfTime.rename(columns={0: "walltime"}, inplace=True)
         dfT = df.T
+        dfT = pd.concat([dfT, dfTime, dfMean], axis=1)
         dfT.to_csv("results/overview/summary_average.csv")
         dfT.to_excel("results/overview/summary_average.xlsx")
     elif mode == "all":
@@ -88,6 +109,14 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
         dfT = df.T
         dfT.to_csv("results/overview/summary_all_" + metric + ".csv")
         dfT.to_excel("results/overview/summary_all_" + metric + ".xlsx")
+        dfTime = pd.DataFrame()
+        for j in all_times:
+            key, value = list(j.items())[0]
+            relevant_value = value.loc[0, :].to_frame(name=key)
+            dfTime = pd.concat([dfTime, pd.DataFrame(relevant_value)], axis=1)
+        dfTime = dfTime.T
+        dfTime.to_csv("results/overview/summary_all_walltime.csv")
+        dfTime.to_excel("results/overview/summary_all_walltime.xlsx")
     if verbose:
         print(dfT)
 
