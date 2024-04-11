@@ -1,3 +1,63 @@
+import time
+
+import dask.array as da
+import dask.dataframe as dd
+import dask_ml.feature_extraction.text
+import pandas as pd
+import sklearn.datasets
+import xgboost
+from dask.distributed import Client
+from dask_cuda import LocalCUDACluster
+
+# from xgboost.dask import DaskXGBClassifier
+from xgboost import dask as dxgb
+
+if __name__ == "__main__":  # GPU version
+
+    with LocalCUDACluster(n_workers=1, threads_per_worker=4) as cluster:
+        with Client(cluster) as client:
+            # Create Dask DataFrame from sklearn 20newsgroups dataset
+            bunch = sklearn.datasets.fetch_20newsgroups()
+            df = dd.from_pandas(
+                pd.DataFrame({"text": bunch.data, "target": bunch.target}),
+                npartitions=25,
+            )
+
+            # Create features with dask-ml's `HashingVectorizer``
+            vect = dask_ml.feature_extraction.text.HashingVectorizer()
+            X = vect.fit_transform(df["text"])
+
+            # Format classification labels
+            y = df["target"].to_dask_array()
+            dtrain = dxgb.DaskQuantileDMatrix(client, X, y)
+
+            # Train XGBoost classifier
+            start = time.time()
+            model = xgboost.dask.DaskXGBClassifier(
+                client,
+                {"verbosity": 2, "tree_method": "hist", "device": "cuda"},
+            )
+            model.fit(X, y)
+
+            model.train(client, dtrain)
+
+            output = dxgb.train(
+                client,
+                {
+                    "verbosity": 2,
+                    "tree_method": "hist",
+                    # Golden line for GPU training
+                    "device": "cuda",
+                },
+                dtrain,
+                num_boost_round=4,
+                evals=[(dtrain, "train")],
+            )
+            end = time.time()
+            print("Time to train: ", end - start)
+            bst = output["booster"]
+            history = output["history"]
+
 # import time
 
 # import dask.dataframe as dd
@@ -5,82 +65,32 @@
 # import pandas as pd
 # import sklearn.datasets
 # from dask.distributed import Client
-# from dask_cuda import LocalCUDACluster
+# from xgboost.dask import DaskXGBClassifier
 
-# # from xgboost.dask import DaskXGBClassifier
-# from xgboost import dask as dxgb
+# if __name__ == "__main__":  # CPU version
 
-# if __name__ == "__main__":  # GPU version
+#     with Client():
+#         # Create Dask DataFrame from sklearn 20newsgroups dataset
+#         bunch = sklearn.datasets.fetch_20newsgroups()
+#         df = dd.from_pandas(
+#             pd.DataFrame({"text": bunch.data, "target": bunch.target}), npartitions=25
+#         )
 
-#     with LocalCUDACluster(n_workers=1, threads_per_worker=4) as cluster:
-#         with Client(cluster) as client:
-#             # Create Dask DataFrame from sklearn 20newsgroups dataset
-#             bunch = sklearn.datasets.fetch_20newsgroups()
-#             df = dd.from_pandas(
-#                 pd.DataFrame({"text": bunch.data, "target": bunch.target}),
-#                 npartitions=25,
-#             )
+#         # Create features with dask-ml's `HashingVectorizer``
+#         vect = dask_ml.feature_extraction.text.HashingVectorizer()
+#         X = vect.fit_transform(df["text"])
 
-#             # Create features with dask-ml's `HashingVectorizer``
-#             vect = dask_ml.feature_extraction.text.HashingVectorizer()
-#             X = vect.fit_transform(df["text"])
+#         # Format classification labels
+#         y = df["target"].to_dask_array()
 
-#             # Format classification labels
-#             y = df["target"].to_dask_array()
-#             dtrain = dxgb.DaskQuantileDMatrix(client, X, y)
-
-#             # Train XGBoost classifier
-#             start = time.time()
-#             output = dxgb.train(
-#                 client,
-#                 {
-#                     "verbosity": 2,
-#                     "tree_method": "hist",
-#                     # Golden line for GPU training
-#                     "device": "cuda",
-#                 },
-#                 dtrain,
-#                 num_boost_round=4,
-#                 evals=[(dtrain, "train")],
-#             )
-#             end = time.time()
-#             print("Time to train: ", end - start)
-#             bst = output["booster"]
-#             history = output["history"]
-
-import time
-
-import dask.dataframe as dd
-import dask_ml.feature_extraction.text
-import pandas as pd
-import sklearn.datasets
-from dask.distributed import Client
-from xgboost.dask import DaskXGBClassifier
-
-if __name__ == "__main__":  # CPU version
-
-    with Client():
-        # Create Dask DataFrame from sklearn 20newsgroups dataset
-        bunch = sklearn.datasets.fetch_20newsgroups()
-        df = dd.from_pandas(
-            pd.DataFrame({"text": bunch.data, "target": bunch.target}), npartitions=25
-        )
-
-        # Create features with dask-ml's `HashingVectorizer``
-        vect = dask_ml.feature_extraction.text.HashingVectorizer()
-        X = vect.fit_transform(df["text"])
-
-        # Format classification labels
-        y = df["target"].to_dask_array()
-
-        # Train XGBoost classifier
-        clf = DaskXGBClassifier()
-        print(f"{X = }")
-        print(f"{y = }")
-        start = time.time()
-        clf.fit(X, y)  # Results in `AttributeError: divisions not found`
-        end = time.time()
-        print("Time to train: ", end - start)
+#         # Train XGBoost classifier
+#         clf = DaskXGBClassifier()
+#         print(f"{X = }")
+#         print(f"{y = }")
+#         start = time.time()
+#         clf.fit(X, y)  # Results in `AttributeError: divisions not found`
+#         end = time.time()
+#         print("Time to train: ", end - start)
 
 
 # import cupy as cp

@@ -45,9 +45,10 @@
     "XGBoost": {
         "hyperparameters":{
             "clf__eta": [0.1, 0.2, 0.3, 0.6, 0.7],
-            "clf__booster": ["dart", "gbtree"],
+            "clf__booster": ["gbtree", "gblinear"],
             "clf__max_depth": [4, 6, 10, 20],
-            "clf__n_estimators": [100, 200, 300, 400]
+            "clf__n_estimators": [100, 200, 300],
+            "clf__device": ["cuda"]
         }
     }
 }
