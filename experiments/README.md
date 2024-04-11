@@ -1,7 +1,17 @@
 # CUML Experiments
-Since this is my first time working with CUML this folder has some experiments from the official documentation. It serves both as a quick point of reference, as well as a short intor into using it.
+Since this is my first time working with CUML this folder has some experiments from the official documentation. It serves both as a quick point of reference, as well as a short intro to using it.
 
-The main goal of CUML is to provide a GPU accelerated scikit-learn like api.
+While marketing researchers often recommend to use GPUs for NN, CNN, LSTM or similar architectures built using Keras, Tensorflow, or PyTorch they omit that "traditional" models like RF, SVM and NB can also leverage GPUs.
+And while new libraries often come with a learning curve, the main goal of CUML is to provide a GPU accelerated scikit-learn like api. In that sense researchers already familiar with Sklearn that face large datasets can leverage their existing knowledge with cuml.
+
+## Notes on expected speed-ups
+While cuml usually beats out Sklearn in 1-to-1 direct comparisons, there are cases where the CPU version comes out on top.
+1. **Small datasets**: The overhead of cuml, and the time needed to copy the data onto the GPU means, that very small datasets can usually run faster on the CPU. --> **IO-bound bottleneck**
+2. **Highly parallel problems**: Tasks like hyperparameter optimization can be parallelized on the CPU. E.g. each core tackles a single fold, with 16 cores 16 folds are evaluated at the same time. While the GPU might be faster than a single core, so long as it is not 16 times faster than the CPU, the CPU will be faster.
+
+So if you have a very large dataset, where your CPU cores are unlikely to beat the GPU, you should use the GPU instead. Similarly, some HPO configurations can take SIGNIFICANTLY longer than others (dart > gbtree > gblinear), in these cases it might make sense to split the training according to long running HPOs. E.g. our SVM model took 13682s for the Automotive dataset. Each fold took between 60s and 600s, the GPU took about: 
+
+In our utils we provide a few scripts that provide summaries of the training times which can be used to evaluate which approach is better in that specific case. See [here](../utils/README.md) for an overview or [here](../utils/summarize_results.py) for the script.
 
 |File | Description|
 |---|---|
