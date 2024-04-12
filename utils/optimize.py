@@ -1,22 +1,40 @@
 ### a script that takes json config files from ./config/ and uses gridsearchcv to find the best hyperparameters for each model and saves the optimal parameters to ./config/optimized
 # Path: utils/optimize.py
 # Import necessary libraries
-import warnings
 import argparse
-import os
 import json
-import pandas as pd
+import os
 import time
-from sklearn.preprocessing import FunctionTransformer
-from sklearn.model_selection import GridSearchCV
+import warnings
+
+import pandas as pd
+
+# from cuml.feature_extraction.text import HashingVectorizer
+from sklearn.feature_extraction.text import (
+    CountVectorizer,
+    HashingVectorizer,
+    TfidfTransformer,
+)
 from sklearn.metrics import roc_auc_score
-from sklearn.pipeline import Pipeline, FunctionTransformer
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import FunctionTransformer, Pipeline
+from sklearn.preprocessing import FunctionTransformer
 
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics
 
-def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1, n_jobs: int = 1):
+
+def run_gridsearchcv(
+    model,
+    params,
+    X_train,
+    y_train,
+    X_test,
+    y_test,
+    verbose=1,
+    n_jobs: int = 1,
+    mode: str = "cpu",
+):
     """Run grid search cross validation on a model.
 
     Args:
@@ -33,6 +51,13 @@ def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1,
     pipeline = Pipeline(
         [("vect", CountVectorizer()), ("tfidf", TfidfTransformer()), ("clf", model)]
     )
+    if mode == "gpu":
+        pipeline = Pipeline(
+            [
+                ("vect", HashingVectorizer()),
+                ("clf", model),
+            ]
+        )
 
     # define scores to be calculated
     scoring = {
@@ -51,7 +76,7 @@ def run_gridsearchcv(model, params, X_train, y_train, X_test, y_test, verbose=1,
         scoring=scoring,
         refit="F1",  # refit the model on the best F1 score
         return_train_score=True,
-        n_jobs=n_jobs
+        n_jobs=n_jobs,
     )
 
     # Fit the model
