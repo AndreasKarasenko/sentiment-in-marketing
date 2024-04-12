@@ -92,6 +92,7 @@ def run_eval(
                 y_test,
                 verbose=args.verbose,
                 n_jobs=args.njobs,
+                mode="gpu",
             )
             end = time.time()
             walltime = end - start
@@ -111,3 +112,9 @@ def run_eval(
 
 if __name__ == "__main__":
     run_eval(datasets, GPU_MODELS, args)
+
+### notes
+# it works but and seems faster than the CPU version but increases the GPU memory usage each time it runs
+# there may be a workaround by changing the data loading method to a dask setup and relaunching the client each time
+# that may however increase the walltime and introduce overhead
+# alternative: https://github.com/rapidsai/cuml/issues/1650 delete the model and clear the memory
