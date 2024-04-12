@@ -19,9 +19,9 @@ import pandas as pd
 from config.utils_config.argparse_args import arguments
 
 ### import evaluation functions
-from eval_cuml import TextPreprocessor, X_test, X_train
 from utils.eval import eval_metrics
 from utils.optimize import run_gridsearchcv
+from utils.preprocess import TextPreprocessor
 from utils.save_results import save_results
 
 warnings.filterwarnings("ignore")
@@ -62,6 +62,9 @@ def run_eval(
     model_dict: Dict[str, Callable[[], Any]],
     args: argparse.Namespace,
 ):
+    if args.njobs != 1:
+        ErrorString = "njobs must be set to 1 for this script\nIgnoring this can lead to unexpected behavior and freeze your computer"
+        raise ValueError(ErrorString)
     for i in datasets:
         train = pd.read_csv(args.data_dir + i + "_train.csv")
         train.dropna(inplace=True)
@@ -104,3 +107,7 @@ def run_eval(
             save_results(filename, model_name, i, metrics, args, walltime, grid)
 
     return 1
+
+
+if __name__ == "__main__":
+    run_eval(datasets, GPU_MODELS, args)
