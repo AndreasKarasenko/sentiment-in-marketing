@@ -1,8 +1,8 @@
-from tqdm import tqdm
-from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+from bs4 import BeautifulSoup
 from google_play_scraper import Sort, reviews
+from tqdm import tqdm
 
 # TODO check for yourself if the bug has been fixed
 # https://github.com/JoMingyu/google-play-scraper/issues/209
@@ -100,7 +100,7 @@ def get_imdb_reviews(movie_id: str, max_iter: int = 1000):
     url = (
         "https://www.imdb.com/title/"
         + movie_id
-        + "reviews/_ajax?ref_=undefined&paginationKey={}"
+        + "/reviews/_ajax?ref_=undefined&paginationKey={}"
     )
     data = {"title": [], "review": [], "rating": []}
     key = ""
@@ -112,7 +112,7 @@ def get_imdb_reviews(movie_id: str, max_iter: int = 1000):
     while n < max_iter:
         response = requests.get(url.format(key))
         soup = BeautifulSoup(response.content, "html.parser")
-        pagination_key = soup.find("div", class_="load-more-data")
+        # key = soup.find("div", class_="load-more-data") # adding this breaks getting more data
         for title, review, rating in zip(
             soup.find_all(class_="title"),
             soup.find_all(class_="text show-more__control"),

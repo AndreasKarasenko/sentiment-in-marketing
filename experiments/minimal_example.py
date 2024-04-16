@@ -22,6 +22,9 @@ from cupyx.scipy.sparse import csr_matrix
 from dask.distributed import Client
 from dask_cuda import LocalCUDACluster
 from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import CountVectorizer as skCV
+from sklearn.feature_extraction.text import HashingVectorizer as skHV
+from sklearn.feature_extraction.text import TfidfVectorizer as skTV
 
 # Create a local CUDA cluster
 cluster = LocalCUDACluster()
@@ -33,9 +36,9 @@ twenty_train = fetch_20newsgroups(subset="train", shuffle=True, random_state=42)
 twenty_train = cudf.DataFrame.from_dict(
     {"data": twenty_train.data, "target": twenty_train.target}
 )
-cv = HashingVectorizer()
+cv = skHV()
 
-xformed = cv.fit_transform(twenty_train.data).astype(cp.float32)
+xformed = cv.fit_transform(twenty_train.data.to_pandas()).astype(cp.float32)
 
 X = csr_matrix(xformed).astype(cp.float32)
 y = cp.asarray(twenty_train.target).astype(cp.int32)

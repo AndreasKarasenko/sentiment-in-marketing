@@ -109,8 +109,9 @@ def run_eval(
 
         X_train = train[input_vars]
         X_test = test[input_vars]
-        X_train = TextPreprocessor().fit_transform(X_train)
-        X_test = TextPreprocessor().transform(X_test)
+        preprocessor = TextPreprocessor()
+        X_train = preprocessor.fit_transform(X_train)
+        X_test = preprocessor.transform(X_test)
 
         y_train = train[target_vars]
         y_test = test[target_vars]
