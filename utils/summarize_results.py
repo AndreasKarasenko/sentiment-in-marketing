@@ -20,9 +20,18 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
     Parameters
     ----------
     mode : str
-        "average" or "all"
+        summarize results based on models and datasets.
+        "average" over datasets "all" results per model per dataset.
         default: "model"
+        
+    metric : str
+        Metric to summarize results on.
+        default: "F1"
 
+    verbose : bool
+        Print the result to console
+        default: False
+    
     return : None
     """
     datetime_regex_str = "\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}"  # regular expression for our datetime format
