@@ -13,16 +13,53 @@ import pandas as pd
 from sklearn.feature_extraction.text import (
     CountVectorizer,
     HashingVectorizer,
-    TfidfTransformer,
+    TfidfVectorizer,
 )
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import FunctionTransformer, Pipeline
 from sklearn.preprocessing import FunctionTransformer
+from skopt import BayesSearchCV
 
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics
 
+def label_transformer(y):
+    """Transform the labels to start from 0."""
+    y_transformer = FunctionTransformer(lambda y: y - 1, validate=False)
+    y = y_transformer.transform(y)
+    return y
+
+
+def run_bayesian_optimization(
+    model,
+    params: dict,
+    X_train,
+    y_train,
+    X_test,
+    y_test,
+    verbose: int =1,
+    n_jobs: int = 1,
+):
+    """Run bayesian optimization on a model.
+    
+    Args:
+        model: a sklearn model
+        params: a dictionary of hyperparameters
+        X_train: training features
+        y_train: training labels
+        X_test: test features
+        y_test: test labels
+    """
+    
+    y_train = label_transformer(y_train)
+    y_test = label_transformer(y_test)
+    
+    pipeline = Pipeline(
+        [("tranform", TfidfVectorizer()), ("clf", model)]
+    )
+    scoring 
+    return 0
 
 def run_gridsearchcv(
     model,
@@ -45,11 +82,10 @@ def run_gridsearchcv(
         X_test: test features
         y_test: test labels
     """
-    y_transformer = FunctionTransformer(lambda y: y - 1, validate=False)
-    y_train = y_transformer.transform(y_train)
-    y_test = y_transformer.transform(y_test)
+    y_train = label_transformer(y_train)
+    y_test = label_transformer(y_test)
     pipeline = Pipeline(
-        [("vect", CountVectorizer()), ("tfidf", TfidfTransformer()), ("clf", model)]
+        [("transformer", TfidfVectorizer()), ("clf", model)]
     )
     if mode == "gpu":
         pipeline = Pipeline(

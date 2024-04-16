@@ -1,4 +1,4 @@
-# short experiment to compare bayesian optimization with grid search
+# short experiment to run bayesian optimization with text data
 import time
 
 import numpy as np
@@ -14,6 +14,7 @@ twenty_train = fetch_20newsgroups(subset="train", shuffle=True, random_state=42)
 X_train, X_test, y_train, y_test = train_test_split(
     twenty_train.data, twenty_train.target, test_size=0.25, random_state=0
 )
+print(X_train[0])
 cv = skHV()
 
 X_train = skHV().fit_transform(X_train).astype(np.float32)
@@ -21,6 +22,13 @@ X_test = skHV().transform(X_test).astype(np.float32)
 
 y_train = np.array(y_train).astype(np.int32)
 y_test = np.array(y_test).astype((np.int32))
+
+scoring = {
+    "Accuracy": "accuracy",
+    "Precision": "precision_macro",
+    "Recall": "recall_macro",
+    "F1": "f1_macro",
+}
 
 opt = BayesSearchCV(
     SVC(),
@@ -30,11 +38,13 @@ opt = BayesSearchCV(
         "degree": (1, 8),  # integer valued parameter
         "kernel": ["linear", "poly", "rbf"],  # categorical parameter
     },
-    n_iter=32,
+    n_iter=1,
     cv=3,
     verbose=3,
     n_jobs=-1,
     n_points=4,
+    scoring=scoring,
+    refit="F1"
 )
 
 
