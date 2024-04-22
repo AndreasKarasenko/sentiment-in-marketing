@@ -20,7 +20,7 @@ from config.utils_config.argparse_args import arguments
 
 ### import evaluation functions
 from utils.eval import eval_metrics
-from utils.optimize import run_gridsearchcv
+from utils.optimize import run_bayesian_optimization, run_gridsearchcv
 from utils.preprocess import TextPreprocessor
 from utils.save_results import save_results
 
@@ -56,50 +56,12 @@ target_vars = target_vars["target_vars"]
 ### import the models dict
 from models import MODELS
 
-# for i in datasets:
-#     train = pd.read_csv(args.data_dir + i + "_train.csv")
-#     train.dropna(inplace=True)
-#     test = pd.read_csv(args.data_dir + i + "_test.csv")
-#     test.dropna(inplace=True)
-
-#     X_train = train[input_vars]
-#     X_test = test[input_vars]
-#     # apply the text preprocessor to the text data
-#     # If we don't do this we incur a 4s penalty for each fold
-#     X_train = TextPreprocessor().transform(X_train)
-#     X_test = TextPreprocessor().transform(X_test)
-
-#     y_train = train[target_vars]
-#     y_test = test[target_vars]
-
-#     # get the model
-#     for model_name, model_func in MODELS.items():
-#         model_instance = model_func()
-#         start = time.time()
-#         grid, metrics = run_gridsearchcv(
-#             model_instance,
-#             search_space[model_name]["hyperparameters"],
-#             X_train,
-#             y_train,
-#             X_test,
-#             y_test,
-#             verbose=args.verbose,
-#             n_jobs=args.njobs,
-#         )
-#         end = time.time()
-#         walltime = end - start
-#         print(grid.best_params_)
-#         print(metrics[-1])
-#         filename = (
-#             model_name + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-#         )
-#         save_results(filename, model_name, i, metrics, args, walltime, grid)
-
 
 def run_eval(
     datasets: List[str],
     model_dict: Dict[str, Callable[[], Any]],
     args: argparse.Namespace,
+    tuning: str = "grid",
 ):
     for i in datasets:
         train = pd.read_csv(args.data_dir + i + "_train.csv")
@@ -119,17 +81,32 @@ def run_eval(
         # get the model
         for model_name, model_func in model_dict.items():
             model_instance = model_func()
-            start = time.time()
-            grid, metrics = run_gridsearchcv(
-                model_instance,
-                search_space[model_name]["hyperparameters"],
-                X_train,
-                y_train,
-                X_test,
-                y_test,
-                verbose=args.verbose,
-                n_jobs=args.njobs,
-            )
+            if tuning == "grid":
+                start = time.time()
+                grid, metrics = run_gridsearchcv(
+                    model_instance,
+                    search_space[model_name]["hyperparameters"],
+                    X_train,
+                    y_train,
+                    X_test,
+                    y_test,
+                    verbose=args.verbose,
+                    n_jobs=args.njobs,
+                )
+            elif tuning == "bayes":
+                start = time.time()
+                grid, metrics = run_bayesian_optimization(
+                    model_instance,
+                    search_space[model_name]["hyperparameters"],
+                    X_train,
+                    y_train,
+                    X_test,
+                    y_test,
+                    verbose=args.verbose,
+                    n_jobs=args.njobs,
+                )
+            else:
+                raise ValueError("tuning must be either grid or bayes")
             end = time.time()
             walltime = end - start
             print(grid.best_params_)
@@ -147,4 +124,4 @@ def run_eval(
 
 
 if __name__ == "__main__":
-    run_eval(datasets, MODELS, args)
+    run_eval(datasets, MODELS, args, tuning="bayes")

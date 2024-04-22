@@ -6,6 +6,7 @@ from scipy.sparse import csr_matrix
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import HashingVectorizer as skHV
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC
 from skopt import BayesSearchCV
 
@@ -29,7 +30,7 @@ scoring = {
     "Recall": "recall_macro",
     "F1": "f1_macro",
 }
-
+pipeline = Pipeline([("tranform", skHV()), ("clf", SVC())])
 opt = BayesSearchCV(
     SVC(),
     {
@@ -44,7 +45,7 @@ opt = BayesSearchCV(
     n_jobs=-1,
     n_points=4,
     scoring=scoring,
-    refit="F1"
+    refit="F1",
 )
 
 

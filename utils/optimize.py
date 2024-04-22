@@ -7,6 +7,7 @@ import os
 import time
 import warnings
 
+#
 import pandas as pd
 
 # from cuml.feature_extraction.text import HashingVectorizer
@@ -24,6 +25,7 @@ from skopt import BayesSearchCV
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics
 
+
 def label_transformer(y):
     """Transform the labels to start from 0."""
     y_transformer = FunctionTransformer(lambda y: y - 1, validate=False)
@@ -38,11 +40,12 @@ def run_bayesian_optimization(
     y_train,
     X_test,
     y_test,
-    verbose: int =1,
+    verbose: int = 1,
     n_jobs: int = 1,
+    n_iter: int = 32,
 ):
     """Run bayesian optimization on a model.
-    
+
     Args:
         model: a sklearn model
         params: a dictionary of hyperparameters
@@ -51,15 +54,42 @@ def run_bayesian_optimization(
         X_test: test features
         y_test: test labels
     """
-    
+
     y_train = label_transformer(y_train)
     y_test = label_transformer(y_test)
-    
-    pipeline = Pipeline(
-        [("tranform", TfidfVectorizer()), ("clf", model)]
+
+    pipeline = Pipeline([("tranform", TfidfVectorizer()), ("clf", model)])
+    scoring = {
+        "Accuracy": "accuracy",
+        "Precision": "precision_macro",
+        "Recall": "recall_macro",
+        "F1": "f1_macro",
+    }
+    opt = BayesSearchCV(
+        pipeline,
+        params,
+        n_iter=n_iter,
+        cv=5,
+        verbose=verbose,
+        scoring=scoring,
+        refit="F1",
+        return_train_score=True,
+        n_jobs=n_jobs,
+        n_points=4,
     )
-    scoring 
-    return 0
+
+    # Fit the model
+    print("Fitting the model")
+    opt.fit(X_train, y_train)
+
+    # Make predictions
+    predictions = opt.predict(X_test)
+
+    # Print the evaluation metrics
+    metrics = eval_metrics(y_test, predictions)
+
+    return opt, metrics
+
 
 def run_gridsearchcv(
     model,
@@ -84,9 +114,7 @@ def run_gridsearchcv(
     """
     y_train = label_transformer(y_train)
     y_test = label_transformer(y_test)
-    pipeline = Pipeline(
-        [("transformer", TfidfVectorizer()), ("clf", model)]
-    )
+    pipeline = Pipeline([("transformer", TfidfVectorizer()), ("clf", model)])
     if mode == "gpu":
         pipeline = Pipeline(
             [
