@@ -19,6 +19,7 @@ import pandas as pd
 from config.utils_config.argparse_args import arguments
 
 ### import evaluation functions
+from utils.dataloader import get_config_names
 from utils.eval import eval_metrics
 from utils.optimize import run_bayesian_optimization, run_gridsearchcv
 from utils.preprocess import TextPreprocessor
@@ -55,29 +56,19 @@ target_vars = target_vars["target_vars"]
 
 ### import the models dict
 from models import MODELS
+from utils.dataloader import get_config_names, load_samples
 
 
 def run_eval(
-    datasets: List[str],
     model_dict: Dict[str, Callable[[], Any]],
     args: argparse.Namespace,
     tuning: str = "grid",
 ):
-    for i in datasets:
-        train = pd.read_csv(args.data_dir + i + "_train.csv")
-        train.dropna(inplace=True)
-        test = pd.read_csv(args.data_dir + i + "_test.csv")
-        test.dropna(inplace=True)
-
-        X_train = train[input_vars]
-        X_test = test[input_vars]
-        preprocessor = TextPreprocessor()
-        X_train = preprocessor.fit_transform(X_train)
-        X_test = preprocessor.transform(X_test)
-
-        y_train = train[target_vars]
-        y_test = test[target_vars]
-
+    datasets, input_vars, target_vars = get_config_names(args)  # get the config names
+    for index, name in enumerate(datasets):
+        X_train, X_test, y_train, y_test = load_samples(
+            name, input_vars[index], target_vars[index], args
+        )
         # get the model
         for model_name, model_func in model_dict.items():
             model_instance = model_func()
@@ -114,14 +105,14 @@ def run_eval(
             filename = (
                 model_name
                 + "_"
-                + i
+                + name
                 + "_"
                 + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             )
-            save_results(filename, model_name, i, metrics, args, walltime, grid)
+            save_results(filename, model_name, name, metrics, args, walltime, grid)
 
     return 1
 
 
 if __name__ == "__main__":
-    run_eval(datasets, MODELS, args, tuning="bayes")
+    run_eval(MODELS, args, tuning="grid")
