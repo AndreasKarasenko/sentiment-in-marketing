@@ -1,6 +1,7 @@
 ### evaluation functions for multi-class classification
 
-from typing import Union, List
+from typing import List, Union
+
 import numpy as np
 import sklearn.metrics as metrics
 
