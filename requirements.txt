@@ -27,3 +27,6 @@ dask-ml==2024.4.4
 
 # for skopt
 scikit-optimize==0.10.1
+
+# for llm prompting
+scikit-llm==1.0.0
