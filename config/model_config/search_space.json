@@ -6,7 +6,7 @@
     },
     "ComplementNB": {
         "hyperparameters": {
-            "clf__alpha": [0.3, 0.2, 1e-1, 1e-2, 1e-3, 1e-4]
+            "clf__alpha": [1e-4, 0.3]
         }
     },
     "LR":{

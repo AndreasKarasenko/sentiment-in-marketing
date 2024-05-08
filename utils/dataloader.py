@@ -56,7 +56,7 @@ def load_samples(
     test.dropna(inplace=True)
 
     X_train = train[input_var]
-    X_test = train[input_var]
+    X_test = test[input_var]
     preprocessor = TextPreprocessor()
     X_train = preprocessor.fit_transform(X_train)
     X_test = preprocessor.transform(X_test)
