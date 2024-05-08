@@ -25,3 +25,21 @@ def split(data: pd.DataFrame, name: str, verbose: bool = False) -> None:
         
     train.to_csv(os.path.join("samples", f"{name}_train.csv"), index=False)
     test.to_csv(os.path.join("samples", f"{name}_test.csv"), index=False)
+    
+def subsplit(name: str, n_samples: int=1):
+    """
+    Subsamples the data for each rating for a smaller test set.
+    Only use the resulting data for prompt based evals.
+    
+    Parameters:
+    name (str): the name of the dataset
+    n_samples (int): the number of samples to take from each rating
+    
+    Returns:
+    """
+    path = os.path.join("samples", name)
+    data = pd.read_csv(path)
+    
+    subsample = data.groupby("rating").apply(lambda df: df.sample(n=n_samples)) # for each rating get n_samples
+    subsample.to_csv(os.path.join("samples/subsamples", name), index=False)
+    

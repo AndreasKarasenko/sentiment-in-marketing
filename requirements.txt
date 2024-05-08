@@ -30,3 +30,6 @@ scikit-optimize==0.10.1
 
 # for deep learning
 datasets==2.19.0
+# for llm prompting
+scikit-llm==1.0.0
+# see also reqs_setfit.txt
