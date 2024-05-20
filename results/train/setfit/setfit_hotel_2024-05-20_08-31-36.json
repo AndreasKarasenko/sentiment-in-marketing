@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "hotel",
+    "metrics": [
+        0.405,
+        0.386518995141639,
+        0.38247790312387286,
+        0.405,
+        "              precision    recall  f1-score   support\n\n           0       0.45      0.65      0.53        40\n           1       0.26      0.15      0.19        40\n           2       0.36      0.38      0.37        40\n           3       0.26      0.23      0.24        40\n           4       0.58      0.62      0.60        40\n\n    accuracy                           0.41       200\n   macro avg       0.38      0.41      0.39       200\nweighted avg       0.38      0.41      0.39       200\n"
+    ],
+    "walltime": 45.50178337097168,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "ikea_reviews",
+    "metrics": [
+        0.405,
+        0.4024021774934553,
+        0.4202066869300912,
+        0.405,
+        "              precision    recall  f1-score   support\n\n           0       0.40      0.50      0.44        40\n           1       0.26      0.30      0.28        40\n           2       0.29      0.20      0.24        40\n           3       0.48      0.60      0.53        40\n           4       0.68      0.42      0.52        40\n\n    accuracy                           0.41       200\n   macro avg       0.42      0.40      0.40       200\nweighted avg       0.42      0.41      0.40       200\n"
+    ],
+    "walltime": 126.48742055892944,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

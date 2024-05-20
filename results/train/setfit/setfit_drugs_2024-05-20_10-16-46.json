@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "drugs",
+    "metrics": [
+        0.18,
+        0.17216958015187928,
+        0.1962534023230118,
+        0.18,
+        "              precision    recall  f1-score   support\n\n           0       0.28      0.25      0.26        20\n           1       0.14      0.35      0.20        20\n           2       0.14      0.05      0.07        20\n           3       0.04      0.05      0.04        20\n           4       0.11      0.10      0.10        20\n           5       0.20      0.05      0.08        20\n           6       0.26      0.40      0.31        20\n           7       0.17      0.15      0.16        20\n           8       0.30      0.15      0.20        20\n           9       0.33      0.25      0.29        20\n\n    accuracy                           0.18       200\n   macro avg       0.20      0.18      0.17       200\nweighted avg       0.20      0.18      0.17       200\n"
+    ],
+    "walltime": 1046.501663684845,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

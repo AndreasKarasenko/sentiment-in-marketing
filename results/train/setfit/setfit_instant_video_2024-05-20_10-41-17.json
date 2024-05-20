@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "instant_video",
+    "metrics": [
+        0.42,
+        0.40691522140640246,
+        0.4164506504356129,
+        0.42,
+        "              precision    recall  f1-score   support\n\n           0       0.42      0.20      0.27        40\n           1       0.44      0.60      0.51        40\n           2       0.47      0.57      0.52        40\n           3       0.30      0.30      0.30        40\n           4       0.45      0.42      0.44        40\n\n    accuracy                           0.42       200\n   macro avg       0.42      0.42      0.41       200\nweighted avg       0.42      0.42      0.41       200\n"
+    ],
+    "walltime": 886.9715557098389,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

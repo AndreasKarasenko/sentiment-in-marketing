@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "musical_instruments",
+    "metrics": [
+        0.455,
+        0.45054344685710823,
+        0.4866505867953056,
+        0.455,
+        "              precision    recall  f1-score   support\n\n           0       0.68      0.33      0.44        40\n           1       0.37      0.62      0.46        40\n           2       0.34      0.30      0.32        40\n           3       0.46      0.40      0.43        40\n           4       0.58      0.62      0.60        40\n\n    accuracy                           0.46       200\n   macro avg       0.49      0.45      0.45       200\nweighted avg       0.49      0.46      0.45       200\n"
+    ],
+    "walltime": 378.52953934669495,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
