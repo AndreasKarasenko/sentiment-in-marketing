@@ -7,13 +7,13 @@ import argparse
 import json
 import os
 import time
+import torch
+import gc
 
 # import utilities
-import warnings
 from datetime import datetime
 
 # typing
-from typing import Any, Callable, Dict, List
 
 import pandas as pd
 
@@ -21,14 +21,11 @@ import pandas as pd
 from config.utils_config.argparse_args import arguments
 
 ### import the models dict
-from setfit import sample_dataset, SetFitModel, SetFitTrainer
+from setfit import sample_dataset, SetFitModel, TrainingArguments, Trainer
 from datasets import Dataset
 
 ### import evaluation functions
-from utils.dataloader import get_config_names, load_samples
 from utils.eval import eval_metrics
-from utils.optimize import run_gridsearchcv
-from utils.preprocess import TextPreprocessor
 from utils.save_results import save_results
 
 # warnings.filterwarnings("ignore")
@@ -51,13 +48,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    ### load the search space json
-    search_space = json.load(open(args.config_dir, "r"))
 
     ### get the dataset names
     datasets = json.load(open(args.data_config + "dataset_config.json", "r"))
     datasets = datasets["datasets"]
     print(datasets)
+    
+    model_name = "setfit"
+    checkpoints = json.load(open("./config/model_config/checkpoints.json", "r"))
+    checkpoint = checkpoints[model_name]
+    
 
     ### get the input and target vars
     input_vars = json.load(open(args.data_config + "input_config.json", "r"))
@@ -70,8 +70,8 @@ if __name__ == "__main__":
     print("target_vars", target_vars)
     
     for i in datasets:
-        train = pd.read_csv(args.data_dir + i + "_train.csv")
-        test = pd.read_csv(args.data_dir + "/subsamples/" + i + "_test.csv")
+        train = pd.read_csv(args.data_dir + i + "_train.csv") # type: ignore
+        test = pd.read_csv(args.data_dir + "/subsamples/" + i + "_test.csv") # type: ignore
         
         train = train.loc[:, [input_vars, target_vars[0]]]
         test = test.loc[:, [input_vars, target_vars[0]]]
@@ -79,11 +79,64 @@ if __name__ == "__main__":
         train.rename(columns={input_vars: "text", target_vars[0]: "label"}, inplace=True)
         test.rename(columns={input_vars: "text", target_vars[0]: "label"}, inplace=True)
         
+        train.dropna(inplace=True)
+        test.dropna(inplace=True)
+        
         # assert that the labels start at 0
         if train.label.min() == 1:
             train.label -= 1
+            train.label = train.label.astype(int)
             test.label -= 1
+            test.label = test.label.astype(int)
+            
+        # remap to binary labels if label is lower than 3
+        # train.loc[train.label < 3, "label"] = 0
+        # test.loc[test.label < 3, "label"] = 0
+        # train.loc[train.label >= 3, "label"] = 1
+        # test.loc[test.label >= 3, "label"] = 1
         
-        train_data = sample_dataset(Dataset.from_pandas(train), num_samples=8)
-        print(train_data)
-        raise ValueError("stop")
+        train_data = sample_dataset(Dataset.from_pandas(train), label_column="label", num_samples=4)
+        if not os.path.exists("results/train/" + model_name):
+            os.makedirs("results/train/" + model_name)
+            
+        # model = SetFitModel(model_body=SentenceTransformer(checkpoint),
+        #                     model_head=LogisticRegression(class_weight="balanced"))
+        
+        model = SetFitModel.from_pretrained("sentence-transformers/paraphrase-mpnet-base-v2",
+                                            )
+        
+        print(torch.cuda.memory_allocated(0))
+        arguments = TrainingArguments(
+            batch_size=8,
+            num_epochs=4,
+            evaluation_strategy="epoch",
+        )
+        arguments.eval_strategy = arguments.evaluation_strategy # type: ignore
+        trainer = Trainer(
+            model=model,
+            args=arguments,
+            train_dataset=train_data,
+            metric="accuracy",
+            column_mapping={"text": "text", "label": "label"},
+        )
+        # trainer.train_classifier(train.text, train.label)
+        print(args)
+        start = time.time()
+        trainer.train()
+        
+        preds = model.predict(test.text) # type: ignore
+        actual = test.label
+        
+        metrics = eval_metrics(actual, preds) # type: ignore
+        end = time.time()
+        walltime = end - start
+        print(metrics[-1])
+        print(walltime)
+        
+        filename = model_name + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        save_results(filename, model_name, i, metrics, args, walltime=walltime)
+        
+        del model, trainer, train_data, train, test
+        gc.collect()
+        torch.cuda.empty_cache()
+        

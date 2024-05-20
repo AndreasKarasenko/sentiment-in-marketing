@@ -4,12 +4,10 @@ import json
 import os
 import re
 from datetime import datetime
-from unittest import result
 
 import numpy as np
 import pandas as pd
 
-import data
 
 
 def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = False):

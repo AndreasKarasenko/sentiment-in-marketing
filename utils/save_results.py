@@ -77,6 +77,7 @@ def save_results(
                     "model": model_name,
                     "dataset": dataset,
                     "metrics": metrics,
+                    "walltime": walltime,
                     "arguments": vars(args),
                 },
                 f,
