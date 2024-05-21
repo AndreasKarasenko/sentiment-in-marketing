@@ -16,6 +16,7 @@ from datetime import datetime
 # typing
 
 import pandas as pd
+import numpy as np
 
 ### import the configurations
 from config.utils_config.argparse_args import arguments
@@ -82,6 +83,31 @@ if __name__ == "__main__":
         train.dropna(inplace=True)
         test.dropna(inplace=True)
         
+
+        # remap labels to 3-class problem
+        # data can have 1-3, 1-5, or 1-10 labels so we need to remap to 0-2
+        # we do this by assigning the medium label to 1 and the rest to 0 or 2
+        train_mean = train.label.unique().mean()
+        
+        tsmaller = train.label < int(train_mean)
+        tlarger = train.label > int(train_mean)
+        tequal = train.label == int(train_mean)
+        
+        train.loc[tsmaller, "label"] = 0
+        train.loc[tlarger, "label"] = 2
+        train.loc[tequal, "label"] = 1
+        
+        print(int(test.label.unique().mean()))
+        test_mean = test.label.unique().mean()
+        
+        tsmaller = test.label < int(test_mean)
+        tlarger = test.label > int(test_mean)
+        tequal = test.label == int(test_mean)
+        
+        test.loc[tsmaller, "label"] = 0
+        test.loc[tlarger, "label"] = 2
+        test.loc[tequal, "label"] = 1
+        
         # assert that the labels start at 0
         if train.label.min() == 1:
             train.label -= 1
@@ -89,13 +115,15 @@ if __name__ == "__main__":
             test.label -= 1
             test.label = test.label.astype(int)
             
-        # remap to binary labels if label is lower than 3
+        # train.loc[train.label < 2, "label"] = 0
+        # test.loc[test.label < 2, "label"] = 0
+        # train.loc[train.label > 2, "label"] = 2
         # train.loc[train.label < 3, "label"] = 0
         # test.loc[test.label < 3, "label"] = 0
         # train.loc[train.label >= 3, "label"] = 1
         # test.loc[test.label >= 3, "label"] = 1
         
-        train_data = sample_dataset(Dataset.from_pandas(train), label_column="label", num_samples=4)
+        train_data = sample_dataset(Dataset.from_pandas(train), label_column="label", num_samples=8)
         if not os.path.exists("results/train/" + model_name):
             os.makedirs("results/train/" + model_name)
             

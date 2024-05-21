@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "office_products",
+    "metrics": [
+        0.56,
+        0.5624190053379843,
+        0.7322141350210971,
+        0.56,
+        "              precision    recall  f1-score   support\n\n         0.0       0.76      0.75      0.75        80\n         1.0       0.30      0.72      0.43        40\n         2.0       0.92      0.29      0.44        80\n\n    accuracy                           0.56       200\n   macro avg       0.66      0.59      0.54       200\nweighted avg       0.73      0.56      0.56       200\n"
+    ],
+    "walltime": 27.980255126953125,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

@@ -3,17 +3,14 @@
 
 import argparse
 import json
-import os
 import time
 
 # import utilities
-import warnings
 from datetime import datetime
 
 # typing
-from typing import Any, Callable, Dict, List
+from typing import Any, Callable, Dict
 
-import pandas as pd
 
 ### import the configurations
 from config.utils_config.argparse_args import arguments
@@ -23,9 +20,7 @@ from models import MODELS
 
 ### import evaluation functions
 from utils.dataloader import get_config_names, load_samples
-from utils.eval import eval_metrics
 from utils.optimize import run_bayesian_optimization, run_gridsearchcv
-from utils.preprocess import TextPreprocessor
 from utils.save_results import save_results
 
 # warnings.filterwarnings("ignore")

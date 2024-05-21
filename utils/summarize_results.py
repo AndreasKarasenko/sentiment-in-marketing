@@ -111,6 +111,7 @@ def summarize_results(mode: str = "all", metric: str = "F1", verbose: bool = Fal
         df = pd.DataFrame()
         for i in all_results:
             key, value = list(i.items())[0]
+            print(value)
             relevant_value = value.loc[metric, :].to_frame(name=key)
             df = pd.concat([df, pd.DataFrame(relevant_value)], axis=1)
         dfT = df.T

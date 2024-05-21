@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "reddit",
+    "metrics": [
+        0.54,
+        0.5588974140380789,
+        0.6113621355813136,
+        0.54,
+        "              precision    recall  f1-score   support\n\n           0       0.63      0.41      0.50        80\n           1       0.25      0.47      0.33        40\n           2       0.77      0.70      0.73        80\n\n    accuracy                           0.54       200\n   macro avg       0.55      0.53      0.52       200\nweighted avg       0.61      0.54      0.56       200\n"
+    ],
+    "walltime": 9.186805725097656,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

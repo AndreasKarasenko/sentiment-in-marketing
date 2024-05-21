@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "automotive",
+    "metrics": [
+        0.43,
+        0.40656697860087687,
+        0.4445460591952111,
+        0.43,
+        "              precision    recall  f1-score   support\n\n         0.0       0.42      0.16      0.23        80\n         1.0       0.25      0.45      0.32        40\n         2.0       0.57      0.69      0.62        80\n\n    accuracy                           0.43       200\n   macro avg       0.41      0.43      0.39       200\nweighted avg       0.44      0.43      0.41       200\n"
+    ],
+    "walltime": 16.824235916137695,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

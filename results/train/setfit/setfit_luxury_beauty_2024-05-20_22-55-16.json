@@ -1,0 +1,23 @@
+{
+    "model": "setfit",
+    "dataset": "luxury_beauty",
+    "metrics": [
+        0.47,
+        0.46866272504475004,
+        0.4703166004574456,
+        0.47,
+        "              precision    recall  f1-score   support\n\n         0.0       0.55      0.49      0.52        80\n         1.0       0.23      0.23      0.23        40\n         2.0       0.51      0.57      0.54        80\n\n    accuracy                           0.47       200\n   macro avg       0.43      0.43      0.43       200\nweighted avg       0.47      0.47      0.47       200\n"
+    ],
+    "walltime": 196.9802167415619,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
