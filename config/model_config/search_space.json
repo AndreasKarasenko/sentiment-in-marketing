@@ -50,5 +50,13 @@
             "clf__n_estimators": [100, 200, 300],
             "clf__device": ["cuda"]
         }
+    },
+    "CNN": {
+        "hyperparameters": {
+            "clf__hidden_layer_dim": [[64], [32], [16], [64, 32], [64, 32, 16]],
+            "clf__activation": ["relu", "tanh"],
+            "clf__optimizer": ["adam"],
+            "clf__optimizer__learning_rate": [0.0001, 0.001, 0.01, 0.1]
+        }
     }
 }

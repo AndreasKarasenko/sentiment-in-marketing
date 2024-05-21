@@ -1,4 +1,5 @@
 from models import (
+    cnn,
     complement_Bayes,
     dt,
     gpu_svm,
@@ -28,6 +29,6 @@ GPU_MODELS = {
     "SVM": gpu_svm.model,
 }
 
-DNN_MODELS = {}
+DNN_MODELS = {"CNN": cnn.clf}
 
 TRANSFER_MODELS = {}

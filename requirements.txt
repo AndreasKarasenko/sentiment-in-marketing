@@ -33,3 +33,7 @@ datasets==2.19.0
 # for llm prompting
 scikit-llm==1.0.0
 # see also reqs_setfit.txt
+
+# for deep learning
+scikeras<0.13.0
+tensorflow_addons==0.23.0
