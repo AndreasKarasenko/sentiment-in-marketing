@@ -4,6 +4,7 @@
 import time
 import argparse
 import json
+import keras
 import pandas as pd
 from datetime import datetime
 from utils.optimize import run_gridsearchcv
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     
     for i in datasets:
         train = pd.read_csv(args.data_dir + i + "_train.csv") # type: ignore
-        test = pd.read_csv(args.data_dir + "/subsamples/" + i + "_test.csv") # type: ignore
+        test = pd.read_csv(args.data_dir + i + "_test.csv") # type: ignore
         
         train = train.loc[:, [input_vars, target_vars[0]]]
         test = test.loc[:, [input_vars, target_vars[0]]]
@@ -69,7 +70,7 @@ if __name__ == "__main__":
             train.label = train.label.astype(int)
             test.label -= 1
             test.label = test.label.astype(int)
-        
+            
         X_train = train["text"]
         X_test = test["text"]
         
@@ -80,6 +81,10 @@ if __name__ == "__main__":
         X_test = np.asarray(X_test)
         y_train = np.asarray(y_train)
         y_test = np.asarray(y_test)
+        
+        num_classes = len(np.unique(y_train))
+        y_train = keras.utils.to_categorical(y_train, num_classes=num_classes)
+        y_test = keras.utils.to_categorical(y_test, num_classes=num_classes)
         
         # y_train = np.asarray(train.label)
         # y_test = np.asarray(test.label)

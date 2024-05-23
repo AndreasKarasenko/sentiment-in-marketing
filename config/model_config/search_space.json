@@ -51,12 +51,20 @@
             "clf__device": ["cuda"]
         }
     },
-    "CNN": {
+    "Neural Network": {
         "hyperparameters": {
             "clf__hidden_layer_dim": [[64], [32], [16], [64, 32], [64, 32, 16]],
             "clf__activation": ["relu", "tanh"],
             "clf__optimizer": ["adam"],
             "clf__optimizer__learning_rate": [0.0001, 0.001, 0.01, 0.1]
+        }
+    },
+    "CNN": {
+        "hyperparameters": {
+            "hidden_layer_dim": [[64], [32], [16], [64, 32], [64, 32, 16]],
+            "activation": ["relu", "tanh"],
+            "optimizer": ["adam"],
+            "optimizer__learning_rate": [0.0001, 0.001, 0.01, 0.1]
         }
     }
 }
