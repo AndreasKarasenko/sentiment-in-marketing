@@ -1,4 +1,5 @@
 import tensorflow_addons as tfa
+import gc
 from tensorflow import keras
 from keras.preprocessing.text import Tokenizer
 from keras.utils import pad_sequences
@@ -25,8 +26,10 @@ class TextPreprocessor(TransformerMixin, BaseEstimator):
     def transform(self, X, y=None):
         sequences = self.tokenizer.texts_to_sequences(X)
         return pad_sequences(sequences, maxlen=self.max_length)
-
+    
 def build_keras_cnn(hidden_layer_dim, vocab_size, sequence_length, num_classes, activation='relu'):
+    keras.backend.clear_session()
+    gc.collect()
     model = Sequential()
     model.add(Embedding(input_dim=vocab_size, output_dim=100, input_length=sequence_length, mask_zero=True))
     for dim in hidden_layer_dim:

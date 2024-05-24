@@ -1,0 +1,23 @@
+{
+    "model": "CNN",
+    "dataset": "drugs",
+    "metrics": [
+        0.4463455458434071,
+        0.43125996483310164,
+        0.4235602610331218,
+        0.4463455458434071,
+        "              precision    recall  f1-score   support\n\n           0       0.56      0.61      0.58      1472\n           1       0.25      0.26      0.26       445\n           2       0.21      0.14      0.17       428\n           3       0.27      0.16      0.20       339\n           4       0.29      0.21      0.25       569\n           5       0.24      0.22      0.23       426\n           6       0.25      0.22      0.23       640\n           7       0.32      0.29      0.30      1224\n           8       0.37      0.33      0.35      1822\n           9       0.57      0.70      0.63      3389\n\n   micro avg       0.45      0.45      0.45     10754\n   macro avg       0.33      0.31      0.32     10754\nweighted avg       0.42      0.45      0.43     10754\n samples avg       0.45      0.45      0.45     10754\n"
+    ],
+    "walltime": 2995.98370885849,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

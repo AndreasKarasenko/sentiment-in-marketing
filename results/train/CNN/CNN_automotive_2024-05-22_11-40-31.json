@@ -1,0 +1,23 @@
+{
+    "model": "CNN",
+    "dataset": "automotive",
+    "metrics": [
+        0.295,
+        0.23068014838320253,
+        0.3256183093392396,
+        0.295,
+        "              precision    recall  f1-score   support\n\n           0       0.50      0.23      0.31        40\n           1       0.33      0.03      0.05        40\n           2       0.29      0.10      0.15        40\n           3       0.22      0.20      0.21        40\n           4       0.29      0.93      0.44        40\n\n   micro avg       0.29      0.29      0.29       200\n   macro avg       0.33      0.30      0.23       200\nweighted avg       0.33      0.29      0.23       200\n samples avg       0.29      0.29      0.29       200\n"
+    ],
+    "walltime": 2972.8523030281067,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

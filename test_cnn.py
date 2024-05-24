@@ -111,4 +111,5 @@ if __name__ == "__main__":
         print(metrics[:-1])
 
         filename = "CNN" + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        keras.backend.clear_session()
         # save_results(filename, "CNN", i, metrics, args)

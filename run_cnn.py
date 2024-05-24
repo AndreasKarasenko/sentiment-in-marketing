@@ -14,6 +14,8 @@ import gc
 from tensorflow import keras
 from keras.preprocessing.text import Tokenizer
 from keras.utils import pad_sequences
+from keras.callbacks import Callback
+from tensorflow.keras import backend as k
 from models.cnn_template import build_keras_cnn
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV, train_test_split
@@ -113,6 +115,13 @@ if __name__ == "__main__":
         
         callback = keras.callbacks.EarlyStopping(monitor="val_f1_score", patience=3, mode="max", restore_best_weights=True)
         print(y_train.shape, X_train.shape, y_test.shape, X_test.shape)
+       
+        class ClearMemory(Callback):
+            def on_epoch_end(self, epoch, logs=None):
+                gc.collect()
+                k.clear_session() 
+        
+        
         clf = KerasClassifier(
             build_fn=build_keras_cnn,
             vocab_size=vocab_size,
@@ -122,7 +131,7 @@ if __name__ == "__main__":
             hidden_layer_dim=(32,),
             activation="relu",
             verbose=1,
-            callbacks=callback,
+            callbacks=[callback],
         )
         
         # pipeline = Pipeline([("clf", clf)])
@@ -146,6 +155,7 @@ if __name__ == "__main__":
         # clf.fit(X_train, y_train, epochs=10, batch_size=32, verbose=1)
         start = time.time()
         grid_search.fit(X_train, y_train, batch_size=128, validation_data=(X_val, y_val))
+        # grid_search.fit(X_train, y_train, batch_size=128)
 
         predictions = grid_search.predict(X_test)
 
