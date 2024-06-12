@@ -1,0 +1,23 @@
+{
+    "model": "CNN",
+    "dataset": "office_products",
+    "metrics": [
+        0.6371407101258689,
+        0.6027237544945184,
+        0.6037263661663351,
+        0.6371407101258689,
+        "              precision    recall  f1-score   support\n\n           0       0.66      0.09      0.16       235\n           1       0.32      0.03      0.06       368\n           2       0.34      0.27      0.30      1009\n           3       0.52      0.38      0.44      3050\n           4       0.71      0.89      0.79      5984\n\n   micro avg       0.64      0.64      0.64     10646\n   macro avg       0.51      0.33      0.35     10646\nweighted avg       0.60      0.64      0.60     10646\n samples avg       0.64      0.64      0.64     10646\n"
+    ],
+    "walltime": 1645.4060554504395,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

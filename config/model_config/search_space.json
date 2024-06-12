@@ -66,5 +66,13 @@
             "optimizer": ["adam"],
             "optimizer__learning_rate": [0.0001, 0.001, 0.01, 0.1]
         }
+    },
+    "LSTM": {
+        "hyperparameters": {
+            "hidden_layer_dim": [[64], [32], [16]],
+            "activation": ["relu"],
+            "optimizer": ["adam"],
+            "optimizer__learning_rate": [0.0001, 0.001, 0.01, 0.1]
+        }
     }
 }

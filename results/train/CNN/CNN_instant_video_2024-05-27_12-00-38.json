@@ -1,0 +1,23 @@
+{
+    "model": "CNN",
+    "dataset": "instant_video",
+    "metrics": [
+        0.6198491785618099,
+        0.6062682940334053,
+        0.6049308574990148,
+        0.6198491785618099,
+        "              precision    recall  f1-score   support\n\n           0       0.55      0.33      0.41       363\n           1       0.32      0.20      0.25       333\n           2       0.34      0.47      0.40       840\n           3       0.41      0.30      0.35      1687\n           4       0.76      0.84      0.80      4203\n\n   micro avg       0.62      0.62      0.62      7426\n   macro avg       0.48      0.43      0.44      7426\nweighted avg       0.60      0.62      0.61      7426\n samples avg       0.62      0.62      0.62      7426\n"
+    ],
+    "walltime": 1829.5896260738373,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
