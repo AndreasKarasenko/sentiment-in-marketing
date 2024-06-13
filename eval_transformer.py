@@ -125,17 +125,20 @@ for name in checkpoints.keys():
         model.compile(optimizer=optimizer)
         print(model.summary())
         
+        start = time.time()
         model.fit(train, epochs=num_epochs)
         model.save_weights(path + f"/{model_name}")
         
         preds_test = model.predict(test)
         predicted_test = np.argmax(preds_test.logits, axis=1)
-        actual_test = test_copy.labels
+        actual_test = test_copy.label
         
         metrics = eval_metrics(actual_test, predicted_test)
+        end = time.time()
+        walltime = end - start
         print(precision_recall_fscore_support(actual_test, predicted_test, average="weighted"))
         print(metrics[-1])
         
         filename = model_name + "_" + i + "_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         
-        save_results(filename, model_name, i, metrics, args)
+        save_results(filename, model_name, i, metrics, args, walltime=walltime)
