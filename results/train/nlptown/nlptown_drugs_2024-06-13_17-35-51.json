@@ -1,0 +1,23 @@
+{
+    "model": "nlptown",
+    "dataset": "drugs",
+    "metrics": [
+        0.4540636042402827,
+        0.37666522198897573,
+        0.35963029750417563,
+        0.4540636042402827,
+        "              precision    recall  f1-score   support\n\n           0       0.47      0.87      0.61      1472\n           1       0.20      0.04      0.07       445\n           2       0.09      0.02      0.04       428\n           3       0.00      0.00      0.00       339\n           4       0.18      0.15      0.16       569\n           5       0.00      0.00      0.00       426\n           6       0.19      0.05      0.08       640\n           7       0.23      0.20      0.21      1224\n           8       0.37      0.17      0.23      1822\n           9       0.55      0.86      0.67      3389\n\n    accuracy                           0.45     10754\n   macro avg       0.23      0.24      0.21     10754\nweighted avg       0.36      0.45      0.38     10754\n"
+    ],
+    "walltime": 2746.486718416214,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
