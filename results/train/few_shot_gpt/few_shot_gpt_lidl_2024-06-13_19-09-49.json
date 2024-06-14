@@ -1,0 +1,23 @@
+{
+    "model": "few_shot_gpt",
+    "dataset": "lidl",
+    "metrics": [
+        0.38,
+        0.3561379672840119,
+        0.3599013777381306,
+        0.38,
+        "              precision    recall  f1-score   support\n\n           0       0.36      0.40      0.38        40\n           1       0.24      0.23      0.23        40\n           2       0.23      0.23      0.23        40\n           3       0.39      0.17      0.24        40\n           4       0.59      0.88      0.71        40\n\n    accuracy                           0.38       200\n   macro avg       0.36      0.38      0.36       200\nweighted avg       0.36      0.38      0.36       200\n"
+    ],
+    "walltime": 199.52615809440613,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

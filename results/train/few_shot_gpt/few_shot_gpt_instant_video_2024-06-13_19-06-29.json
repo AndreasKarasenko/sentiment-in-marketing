@@ -1,0 +1,23 @@
+{
+    "model": "few_shot_gpt",
+    "dataset": "instant_video",
+    "metrics": [
+        0.3,
+        0.217606040904991,
+        0.2776894747044001,
+        0.3,
+        "              precision    recall  f1-score   support\n\n           0       0.45      0.38      0.41        40\n           1       0.50      0.07      0.13        40\n           2       0.14      0.07      0.10        40\n           3       0.00      0.00      0.00        40\n           4       0.29      0.97      0.45        40\n\n    accuracy                           0.30       200\n   macro avg       0.28      0.30      0.22       200\nweighted avg       0.28      0.30      0.22       200\n"
+    ],
+    "walltime": 713.4332902431488,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

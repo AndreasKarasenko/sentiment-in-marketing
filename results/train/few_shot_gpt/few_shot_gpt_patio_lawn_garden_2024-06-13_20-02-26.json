@@ -1,0 +1,23 @@
+{
+    "model": "few_shot_gpt",
+    "dataset": "patio_lawn_garden",
+    "metrics": [
+        0.255,
+        0.20763123600225156,
+        0.3932756132756133,
+        0.255,
+        "              precision    recall  f1-score   support\n\n           0       1.00      0.03      0.05        40\n           1       0.24      0.12      0.16        40\n           2       0.21      0.35      0.26        40\n           3       0.23      0.12      0.16        40\n           4       0.29      0.65      0.40        40\n\n    accuracy                           0.26       200\n   macro avg       0.39      0.26      0.21       200\nweighted avg       0.39      0.26      0.21       200\n"
+    ],
+    "walltime": 1124.5990524291992,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

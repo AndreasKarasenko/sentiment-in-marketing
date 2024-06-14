@@ -1,0 +1,23 @@
+{
+    "model": "nlptown",
+    "dataset": "lidl",
+    "metrics": [
+        0.7479806138933764,
+        0.7025626983745576,
+        0.6973866261001899,
+        0.7479806138933764,
+        "              precision    recall  f1-score   support\n\n           0       0.63      0.91      0.74      1095\n           1       0.25      0.01      0.01       309\n           2       0.36      0.22      0.28       454\n           3       0.49      0.22      0.30       959\n           4       0.84      0.95      0.89      3992\n\n    accuracy                           0.75      6809\n   macro avg       0.51      0.46      0.44      6809\nweighted avg       0.70      0.75      0.70      6809\n"
+    ],
+    "walltime": 1022.4453432559967,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

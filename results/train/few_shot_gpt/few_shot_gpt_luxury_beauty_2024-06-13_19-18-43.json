@@ -1,0 +1,23 @@
+{
+    "model": "few_shot_gpt",
+    "dataset": "luxury_beauty",
+    "metrics": [
+        0.305,
+        0.3042510152368358,
+        0.3262513133109575,
+        0.305,
+        "              precision    recall  f1-score   support\n\n           0       0.43      0.38      0.40        40\n           1       0.39      0.17      0.24        40\n           2       0.23      0.35      0.28        40\n           3       0.31      0.30      0.30        40\n           4       0.28      0.33      0.30        40\n\n    accuracy                           0.30       200\n   macro avg       0.33      0.30      0.30       200\nweighted avg       0.33      0.30      0.30       200\n"
+    ],
+    "walltime": 533.7357950210571,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
