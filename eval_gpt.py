@@ -1,16 +1,10 @@
-import warnings
 import argparse
 import os
 import json
-import numpy as np
 import pandas as pd
-from datasets import Dataset
 from datetime import datetime
 from utils.save_results import save_results
 from utils.openai.get_samples import get_samples
-from typing import Any, Callable, Dict, List
-from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
-from setfit import sample_dataset
 from skllm.models.gpt.classification.few_shot import FewShotGPTClassifier
 
 ### Import evaluation functions from utils/eval.py
@@ -20,7 +14,6 @@ import time
 from config.utils_config.argparse_args import arguments
 
 ### import evaluation functions
-from utils.dataloader import get_config_names, load_samples
 
 
 
@@ -78,7 +71,7 @@ if __name__ == "__main__":
             test.label = test.label.astype(int)
             
         
-        samples = get_samples(train, n_samples=8, label_col="label")
+        samples = get_samples(train, n_samples=4, label_col="label")
         if not os.path.exists("results/train/" + model_name):
             os.makedirs("results/train/" + model_name)
             
@@ -86,14 +79,15 @@ if __name__ == "__main__":
         #                     model_head=LogisticRegression(class_weight="balanced"))
         
         
+        API_KEY="..."
         start = time.time()
-        model = FewShotGPTClassifier(key=API_KEY)
+        model = FewShotGPTClassifier(key=API_KEY, model="gpt-3.5-turbo-0125")
         model = model.fit(samples["text"].tolist(), samples["label"].tolist())
         
         X_test = test["text"].tolist()
-        y_test = test["labels"].tolist()
+        y_test = test["label"].tolist()
         
-        preds = model.predict(test.text.tolist()) # type: ignore
+        preds = model.predict(test.text.tolist(), num_workers=1) # type: ignore
         actual = test.label
         
         metrics = eval_metrics(actual, preds) # type: ignore
