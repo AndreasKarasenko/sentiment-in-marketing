@@ -1,0 +1,23 @@
+{
+    "model": "bert",
+    "dataset": "twitter",
+    "metrics": [
+        0.8101092896174863,
+        0.8089039833609475,
+        0.8080472553000415,
+        0.8101092896174863,
+        "              precision    recall  f1-score   support\n\n           0       0.88      0.89      0.89      1889\n           1       0.63      0.59      0.61       580\n           2       0.73      0.76      0.74       459\n\n    accuracy                           0.81      2928\n   macro avg       0.75      0.75      0.74      2928\nweighted avg       0.81      0.81      0.81      2928\n"
+    ],
+    "walltime": 409.35565519332886,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
