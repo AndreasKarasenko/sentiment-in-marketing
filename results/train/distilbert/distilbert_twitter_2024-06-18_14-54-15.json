@@ -1,0 +1,23 @@
+{
+    "model": "distilbert",
+    "dataset": "twitter",
+    "metrics": [
+        0.8244535519125683,
+        0.8189276037302103,
+        0.8177485200330832,
+        0.8244535519125683,
+        "              precision    recall  f1-score   support\n\n           0       0.87      0.92      0.90      1889\n           1       0.70      0.55      0.62       580\n           2       0.75      0.76      0.76       459\n\n    accuracy                           0.82      2928\n   macro avg       0.77      0.75      0.76      2928\nweighted avg       0.82      0.82      0.82      2928\n"
+    ],
+    "walltime": 1093.1427001953125,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

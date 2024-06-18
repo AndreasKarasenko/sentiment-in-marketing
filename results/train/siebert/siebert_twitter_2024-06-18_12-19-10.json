@@ -1,0 +1,23 @@
+{
+    "model": "siebert",
+    "dataset": "twitter",
+    "metrics": [
+        0.8637295081967213,
+        0.8614885068222149,
+        0.8616363258647601,
+        0.8637295081967213,
+        "              precision    recall  f1-score   support\n\n           0       0.92      0.93      0.92      1889\n           1       0.74      0.64      0.69       580\n           2       0.79      0.89      0.84       459\n\n    accuracy                           0.86      2928\n   macro avg       0.82      0.82      0.82      2928\nweighted avg       0.86      0.86      0.86      2928\n"
+    ],
+    "walltime": 7108.258353471756,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
