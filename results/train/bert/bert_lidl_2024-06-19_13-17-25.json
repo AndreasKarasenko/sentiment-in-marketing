@@ -1,0 +1,23 @@
+{
+    "model": "bert",
+    "dataset": "lidl",
+    "metrics": [
+        0.7352034072551036,
+        0.6935306401176984,
+        0.6920025880513477,
+        0.7352034072551036,
+        "              precision    recall  f1-score   support\n\n           0       0.67      0.87      0.75      1095\n           1       0.50      0.01      0.01       309\n           2       0.30      0.27      0.28       454\n           3       0.39      0.19      0.25       959\n           4       0.83      0.94      0.88      3992\n\n    accuracy                           0.74      6809\n   macro avg       0.54      0.45      0.44      6809\nweighted avg       0.69      0.74      0.69      6809\n"
+    ],
+    "walltime": 3140.3588967323303,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

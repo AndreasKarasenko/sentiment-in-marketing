@@ -1,0 +1,23 @@
+{
+    "model": "bert",
+    "dataset": "luxury_beauty",
+    "metrics": [
+        0.7543398978847556,
+        0.7470183311940803,
+        0.7464100478525215,
+        0.7543398978847556,
+        "              precision    recall  f1-score   support\n\n         0.0       0.54      0.65      0.59       223\n         1.0       0.56      0.26      0.35       290\n         2.0       0.57      0.61      0.59       745\n         3.0       0.60      0.54      0.56      1509\n         4.0       0.86      0.90      0.88      4088\n\n    accuracy                           0.75      6855\n   macro avg       0.62      0.59      0.60      6855\nweighted avg       0.75      0.75      0.75      6855\n"
+    ],
+    "walltime": 3817.5479187965393,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
