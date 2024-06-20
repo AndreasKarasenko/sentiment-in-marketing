@@ -1,0 +1,23 @@
+{
+    "model": "distilbert",
+    "dataset": "ikea_reviews",
+    "metrics": [
+        0.7374429223744292,
+        0.6565728671352861,
+        0.595501423636994,
+        0.7374429223744292,
+        "              precision    recall  f1-score   support\n\n           0       0.57      0.87      0.69       495\n           1       0.00      0.00      0.00       123\n           2       0.00      0.00      0.00       122\n           3       0.00      0.00      0.00       213\n           4       0.83      0.96      0.89      1237\n\n    accuracy                           0.74      2190\n   macro avg       0.28      0.37      0.32      2190\nweighted avg       0.60      0.74      0.66      2190\n"
+    ],
+    "walltime": 236.58722400665283,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

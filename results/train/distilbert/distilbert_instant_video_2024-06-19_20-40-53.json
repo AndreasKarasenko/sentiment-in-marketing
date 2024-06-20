@@ -1,0 +1,23 @@
+{
+    "model": "distilbert",
+    "dataset": "instant_video",
+    "metrics": [
+        0.6097495286830057,
+        0.5492003403216846,
+        0.5389269130427842,
+        0.6097495286830057,
+        "              precision    recall  f1-score   support\n\n         0.0       0.55      0.05      0.09       363\n         1.0       0.00      0.00      0.00       333\n         2.0       0.31      0.31      0.31       840\n         3.0       0.37      0.20      0.26      1687\n         4.0       0.69      0.93      0.79      4203\n\n    accuracy                           0.61      7426\n   macro avg       0.38      0.30      0.29      7426\nweighted avg       0.54      0.61      0.55      7426\n"
+    ],
+    "walltime": 1710.5902314186096,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "model": "distilbert",
+    "dataset": "office_products",
+    "metrics": [
+        0.6253052789780199,
+        0.5875762122176033,
+        0.5787877324804519,
+        0.6253052789780199,
+        "              precision    recall  f1-score   support\n\n         0.0       0.72      0.06      0.10       235\n         1.0       0.00      0.00      0.00       368\n         2.0       0.31      0.25      0.28      1009\n         3.0       0.48      0.37      0.42      3050\n         4.0       0.70      0.88      0.78      5984\n\n    accuracy                           0.63     10646\n   macro avg       0.44      0.31      0.32     10646\nweighted avg       0.58      0.63      0.59     10646\n"
+    ],
+    "walltime": 2955.539016723633,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

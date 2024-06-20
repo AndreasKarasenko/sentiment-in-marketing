@@ -1,0 +1,23 @@
+{
+    "model": "distilbert",
+    "dataset": "lidl",
+    "metrics": [
+        0.708180349537377,
+        0.6331792082176749,
+        0.6247954752970687,
+        0.708180349537377,
+        "              precision    recall  f1-score   support\n\n           0       0.51      0.90      0.65      1095\n           1       0.00      0.00      0.00       309\n           2       0.32      0.02      0.03       454\n           3       0.35      0.07      0.12       959\n           4       0.81      0.94      0.87      3992\n\n    accuracy                           0.71      6809\n   macro avg       0.40      0.39      0.33      6809\nweighted avg       0.62      0.71      0.63      6809\n"
+    ],
+    "walltime": 655.3373956680298,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
