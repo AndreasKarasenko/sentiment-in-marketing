@@ -1,0 +1,23 @@
+{
+    "model": "siebert",
+    "dataset": "lidl",
+    "metrics": [
+        0.7475400205610222,
+        0.70241707528926,
+        0.6862213060529179,
+        0.7475400205610222,
+        "              precision    recall  f1-score   support\n\n           0       0.64      0.90      0.75      1095\n           1       0.00      0.00      0.00       309\n           2       0.33      0.27      0.30       454\n           3       0.48      0.19      0.28       959\n           4       0.84      0.95      0.89      3992\n\n    accuracy                           0.75      6809\n   macro avg       0.46      0.46      0.44      6809\nweighted avg       0.69      0.75      0.70      6809\n"
+    ],
+    "walltime": 54246.80686712265,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
