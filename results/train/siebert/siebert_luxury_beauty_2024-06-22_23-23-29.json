@@ -1,0 +1,23 @@
+{
+    "model": "siebert",
+    "dataset": "luxury_beauty",
+    "metrics": [
+        0.799708242159008,
+        0.798276882324528,
+        0.7973843191216408,
+        0.799708242159008,
+        "              precision    recall  f1-score   support\n\n         0.0       0.73      0.65      0.68       223\n         1.0       0.52      0.53      0.52       290\n         2.0       0.66      0.68      0.67       745\n         3.0       0.66      0.63      0.65      1509\n         4.0       0.89      0.91      0.90      4088\n\n    accuracy                           0.80      6855\n   macro avg       0.69      0.68      0.69      6855\nweighted avg       0.80      0.80      0.80      6855\n"
+    ],
+    "walltime": 41717.8429684639,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 3,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
