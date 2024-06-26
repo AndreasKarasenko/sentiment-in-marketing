@@ -1,12 +1,9 @@
 ### a script that takes json config files from ./config/ and uses gridsearchcv to find the best hyperparameters for each model and saves the optimal parameters to ./config/optimized
 # Path: utils/optimize.py
 # Import necessary libraries
-from re import X
 import warnings
 import argparse
-import os
 import json
-from weakref import ref
 import numpy as np
 import pandas as pd
 from datetime import datetime
