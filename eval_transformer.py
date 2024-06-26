@@ -1,10 +1,12 @@
-from uu import Error
+from random import shuffle
 import warnings
 import argparse
 import os
 import json
 import numpy as np
+from optree import tree_sum
 import pandas as pd
+import tensorflow as tf
 from datasets import Dataset
 from datetime import datetime
 from utils.save_results import save_results
@@ -15,6 +17,14 @@ from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
 
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics
+
+mb = 12282
+gpu = tf.config.list_physical_devices("GPU")[0]
+tf.config.set_logical_device_configuration(gpu,
+                                           [
+                                               tf.config.LogicalDeviceConfiguration(memory_limit= mb - 400)
+                                               ]
+                                           )
 
 
 import time
@@ -99,7 +109,7 @@ for name in checkpoints.keys():
         
         collator = DataCollatorWithPadding(tokenizer=tokenizer, return_tensors="tf")
         
-        bs = 8
+        bs = 3
         
         train = train.to_tf_dataset(
             columns=["attention_mask", "input_ids", "label"],
