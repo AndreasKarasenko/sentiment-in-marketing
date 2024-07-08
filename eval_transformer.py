@@ -1,10 +1,8 @@
-from random import shuffle
 import warnings
 import argparse
 import os
 import json
 import numpy as np
-from optree import tree_sum
 import pandas as pd
 import tensorflow as tf
 from datasets import Dataset
@@ -13,7 +11,7 @@ from utils.save_results import save_results
 from transformers import (AutoTokenizer, TFAutoModelForSequenceClassification,
                           DataCollatorWithPadding, create_optimizer)
 from typing import List
-from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support
 
 ### Import evaluation functions from utils/eval.py
 from utils.eval import eval_metrics

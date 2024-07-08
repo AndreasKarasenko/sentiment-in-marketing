@@ -104,6 +104,7 @@ def run_eval(
                 + i
                 + "_"
                 + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                + "gpu_model"
             )
             save_results(filename, model_name, i, metrics, args, walltime, grid)
 

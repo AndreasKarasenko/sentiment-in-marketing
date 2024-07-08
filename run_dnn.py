@@ -11,8 +11,6 @@ from utils.optimize import run_gridsearchcv
 from utils.save_results import save_results
 import numpy as np
 
-### Import evaluation functions from utils/eval.py
-from utils.eval import eval_metrics
 
 ### Import the config variables from config/utils_config/argparse_args.py
 from config.utils_config.argparse_args import arguments

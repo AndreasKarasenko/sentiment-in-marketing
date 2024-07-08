@@ -3,7 +3,6 @@
 # Import necessary libraries
 import argparse
 import json
-from weakref import ref
 import numpy as np
 import pandas as pd
 from datetime import datetime
