@@ -1,6 +1,7 @@
 import pandas as pd
 from io import StringIO
 
+### for all results
 data = "./results/overview/summary_all_F1.csv"
 df = pd.read_csv(data)
 df.rename(columns={"Unnamed: 0": "Model"}, inplace=True)
@@ -26,3 +27,16 @@ df_melted['Rank'] = df_melted.groupby('Metric').cumcount() + 1
 # Pivot the dataframe
 df_pivot = df_melted.pivot(index='Rank', columns='Metric', values='Model_Score')
 df_pivot.to_excel("./results/overview/overall_scores.xlsx")
+
+### for average results
+data = "./results/overview/summary_average.csv"
+df = pd.read_csv(data)
+df.rename(columns={"Unnamed: 0": "Model"}, inplace=True)
+
+# sort
+sort_cols = list(df.columns)
+sort_cols.remove("Model")
+df.sort_values(by=sort_cols, inplace=True, ascending=False)
+
+# save
+df.to_excel("./results/overview/overall_avg_scores.xlsx")
