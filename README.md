@@ -8,7 +8,7 @@ config          --  config files (e.g. data config, or model config / hyperparam
 data            --  folder where data should be stored
 models          --  folder where models should be specified
 ressources      --  folder for additional ressources
-results         --  results for various evaluation schemes
+results         --  results for each model / dataset and aggregated
 samples         --  train / test samples for reproducible testing
 utils           --  utilities like eval functions
 ```

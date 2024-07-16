@@ -8,6 +8,7 @@ And while new libraries often come with a learning curve, the main goal of CUML 
 While cuml usually beats out Sklearn in 1-to-1 direct comparisons, there are cases where the CPU version comes out on top.
 1. **Small datasets**: The overhead of cuml, and the time needed to copy the data onto the GPU means, that very small datasets can usually run faster on the CPU. --> **IO-bound bottleneck**
 2. **Highly parallel problems**: Tasks like hyperparameter optimization can be parallelized on the CPU. E.g. each core tackles a single fold, with 16 cores 16 folds are evaluated at the same time. While the GPU might be faster than a single core, so long as it is not 16 times faster than the CPU, the CPU will be faster.
+This becomes even more appararent when the folds become so small, that the CPU beats out the GPU per-fold too.
 
 So if you have a very large dataset, where your CPU cores are unlikely to beat the GPU, you should use the GPU instead. Similarly, some HPO configurations can take SIGNIFICANTLY longer than others (dart > gbtree > gblinear), in these cases it might make sense to split the training according to long running HPOs. E.g. our SVM model took 13682s for the Automotive dataset. Each fold took between 60s and 600s, the GPU took about: 
 

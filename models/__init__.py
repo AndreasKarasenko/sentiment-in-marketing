@@ -17,22 +17,22 @@ DICTIONARY_MODELS = {
 }
 
 MODELS = {
-    # "MultinomialNB": naive_bayes.model,
+    "MultinomialNB": naive_bayes.model,
     "ComplementNB": complement_Bayes.model,
-    # "LR": logistic_regression.model,
+    "LR": logistic_regression.model,
     # "SVM": svm.model,
-    # "Decision Tree": dt.dt_model,
-    # "RF": rf.rf_model,
-    # "XGBoost": xgboost.xgboost_model,
+    "Decision Tree": dt.dt_model,
+    "RF": rf.rf_model,
+    "XGBoost": xgboost.xgboost_model,
 }
 
-GPU_MODELS = {
-    "SVM": gpu_svm.model,
-}
+# GPU_MODELS = {
+#     "SVM": gpu_svm.model,
+# }
 
 DNN_MODELS = {
     "CNN": cnn.clf,
-    # "Neural Network": nn.clf,
+    "Neural Network": nn.clf,
     }
 
 TRANSFER_MODELS = {}

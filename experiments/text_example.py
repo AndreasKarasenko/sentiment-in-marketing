@@ -8,10 +8,10 @@ import xgboost as xgb
 # from xgboost import XGBClassifier
 from cuml.dask.common import to_sparse_dask_array
 from cuml.dask.naive_bayes import MultinomialNB as cuNB
-from cuml.ensemble import RandomForestClassifier
+from cuml.ensemble import RandomForestClassifier as cuRF
 from dask.distributed import Client
 from dask_cuda import LocalCUDACluster
-from dask_ml.xgboost import XGBClassifier
+# from dask_ml.xgboost import XGBClassifier
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB as skNB
