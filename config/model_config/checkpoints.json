@@ -1,6 +1,0 @@
-{
-    "nlptown": "nlptown/bert-base-multilingual-uncased-sentiment",
-    "bert": "bert-base-multilingual-uncased",
-    "siebert": "siebert/sentiment-roberta-large-english",
-    "distilbert": "distilbert-base-multilingual-cased"
-}

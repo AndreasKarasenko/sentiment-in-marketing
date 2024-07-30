@@ -1,2 +1,0 @@
-## Quick notes about possible further projects
-Fake Review Detection ([e.g.](https://www.sciencedirect.com/science/article/pii/S0969698921003374#sec6)) has relevant and important impacts on companies and their communication strategies.

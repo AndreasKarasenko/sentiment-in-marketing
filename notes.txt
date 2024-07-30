@@ -1,8 +1,0 @@
-This for an overview of BERT
-https://huggingface.co/docs/transformers/bertology
-
-why is accuracy the same as recall?
---> https://stats.stackexchange.com/a/523715
---> https://stats.stackexchange.com/questions/99694/what-does-it-imply-if-accuracy-and-recall-are-the-same
-
-Basically by definition they have to be because of the weighted averaging and the multiclass setting.
