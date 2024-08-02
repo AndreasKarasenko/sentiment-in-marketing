@@ -2,10 +2,11 @@
 import matplotlib.pyplot as plt
 from utils.dataloader import googleplay
 from utils.describe import describe
+from sklearn.naive_bayes import MultinomialNB # model
+from sklearn.feature_extraction.text import TfidfVectorizer # transformer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from setfit import sample_dataset, SetFitModel, TrainingArguments, Trainer
 
 # load the data
 df = googleplay(config=None, path="./data/ikea_reviews.csv")
@@ -19,7 +20,7 @@ y = df["score"]
 
 
 # load the model
-model = SetFitModel.from_pretrained("sentence-transformers/paraphrase-mpnet-base-v2")
+model = MultinomialNB()
 
 # split the data
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)

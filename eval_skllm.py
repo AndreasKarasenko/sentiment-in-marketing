@@ -2,9 +2,6 @@
 import argparse
 import json
 import os
-import time
-import torch
-import gc
 
 # import utilities
 from datetime import datetime
@@ -28,7 +25,6 @@ import json
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from utils.optimize import run_gridsearchcv
 from utils.save_results import save_results
 
 ### Import evaluation functions from utils/eval.py
