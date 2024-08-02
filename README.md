@@ -15,14 +15,19 @@ utils           --  utilities like eval functions
 
 Everything is written as a Python Module so top Module like import is supported.
 
-### Outline
-The main goal is to provide an overview of relevant classical as well as more modern and state of the art (SOTA) approaches to text classification and explicitly sentiment analysis.
+To replicate the results of the paper you have to run `eval_ml.py`, `eval_cnn.py`, `eval_transformer.py`, `eval_gpt.py`, and `eval_setfit.py`. We used `scrape_data.py` to scrape the Google Play Store datasets.
+We then used `sample_data.py` to split the data into train and test sets **once** to ensure comparability between models.
+We additionaly provide code examples for Neural Networks and LSTM (`run_dnn.py`, `run_lstm.py`).
 
-**General Problem**: Given a text *T* we want to predict *n* classes representing emotional valence. Since computers can't work with words we need to encode them to numbers which leads us to the first sub-topic.
+For GPU accelerated evaluations you can try `eval_gpu_ml.py` for all Scikit-Learn models. 
 
-**Preprocessing**: Various approaches to transform text exist. Among them are: BoW, AutoEncoders, Pre-Trained embeddings (Glove) and modern Pre-Trained embeddings from BERT. We show how to use each approach and provide comparisons regarding predictive accuracy.
+Some subfolders like [utils](./utils/) provide additional information about their scripts.
+The [examples](./examples/) folder contains various working examples for scraping, loading data, preprocessing, metrics, end-to-end examples for various models (Vader, Naive Bayes, CNN, transfer-learning, few-shot-learning), and also ways to interpret such black-box models.
 
-**Training / Hyperparameter Tuning**: Since default values make little sense, HP tuning is a standard process. We show how to unify both traditional models like RF with more modern approaches like CNN in a single scikit-learn pipeline.
+The [data](./data/) folder contains all used data, and our train / test splits can be found in [samples](./samples/). 
+
+The [config](./config/) folder contains model checkpoints, search spaces for Hyperparameter Tuning, data config files (for text and target columns) and command line utilities (see [argparse_args.py](./config/utils_config/argparse_args.py)).
+
 
 ## Notes
 For docstrings I used Github Copilot and adjusted where necessary.

@@ -36,11 +36,6 @@ from models import MODELS, DNN_MODELS
 # use a specific model
 svm = MODELS["svm"]
 svm.fit(X_train, y_train)
+preds = svm.predict(X_test)
 ...
-# iterate over all models
-results = {}
-for model_name in MODELS.keys():
-    model_function = MODELS[model_name]
-    model_function.fit(train_data)
-    results[model_name] = model_function.evaluate(X_test, y_test)
 ```
