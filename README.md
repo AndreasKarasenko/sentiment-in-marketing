@@ -1,5 +1,11 @@
 # Sentiment Analysis in Marketing – From Fundamentals to State-of-the-art
-This project serves as the online appendix for the paper ***Sentiment Analysis in Marketing – From Fundamentals to State-of-the-art***
+This project serves as the online appendix for the paper ***Sentiment Analysis in Marketing – From Fundamentals to State-of-the-art***.
+
+We compared several models from Naive Bayes to Few-Shot prompting with ChatGPT.
+If you simply want to see results check out the [overall results](./results/overview/overall_scores_F1.xlsx),
+or the [average results](./results/overview/summary_average.xlsx).
+If you want to see some examples of how to work with text data see the [examples](./examples/).
+We cover scraping, preprocessing, modeling, metrics, and interpretability.
 
 The project structure is as follows:
 
@@ -12,6 +18,11 @@ results         --  results for each model / dataset and aggregated
 samples         --  train / test samples for reproducible testing
 utils           --  utilities like eval functions
 ```
+We additionally have several top-level python scripts that ran both the hyperparameter estimation (where appropriate) and the evaluation of the models.
+These are explained further down.
+
+The requirements are in `reqs_setfit.txt` and `requirements.txt`. If you want to experiment with cuML (for GPU accelerated Scikit-Learn) you also need `cuML_install.txt`.
+
 
 Everything is written as a Python Module so top Module like import is supported.
 
@@ -30,8 +41,7 @@ The [config](./config/) folder contains model checkpoints, search spaces for Hyp
 
 
 ## Notes
-For docstrings I used Github Copilot and adjusted where necessary.
 
 Libraries like cuML promise speed ups by utilizing GPUs but also require more complicated setups. At the same time the scikit-learn implementations are by no means slow. If the setup proves to be problematic, we would recommend using the scikit-learn classes /functions instead. Thanks to the efforts of the cuML dev team, the code should be easily transferable.
 
-For an installation guide of cuML go [here](./cuML_install.txt) or [here]()
+For an installation guide of cuML go [here](./cuML_install.txt).
