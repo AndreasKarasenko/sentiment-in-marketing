@@ -1,0 +1,23 @@
+{
+    "model": "naive_random",
+    "dataset": "office_products",
+    "metrics": [
+        0.11074582002630096,
+        0.0938187003356168,
+        0.09506282704566253,
+        0.11074582002630096,
+        "              precision    recall  f1-score   support\n\n         1.0       0.02      0.26      0.04       235\n         2.0       0.03      0.25      0.06       368\n         3.0       0.10      0.27      0.14      1009\n         4.0       0.29      0.25      0.27      3050\n         5.0       0.00      0.00      0.00      5984\n\n    accuracy                           0.11     10646\n   macro avg       0.09      0.20      0.10     10646\nweighted avg       0.10      0.11      0.09     10646\n"
+    ],
+    "walltime": 0.00021386146545410156,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

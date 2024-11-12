@@ -1,0 +1,23 @@
+{
+    "model": "naive",
+    "dataset": "patio_lawn_garden",
+    "metrics": [
+        0.5296114673708034,
+        0.36674451304000394,
+        0.2804883063706556,
+        0.5296114673708034,
+        "              precision    recall  f1-score   support\n\n         1.0       0.00      0.00      0.00       109\n         2.0       0.00      0.00      0.00       145\n         3.0       0.00      0.00      0.00       343\n         4.0       0.00      0.00      0.00       650\n         5.0       0.53      1.00      0.69      1404\n\n    accuracy                           0.53      2651\n   macro avg       0.11      0.20      0.14      2651\nweighted avg       0.28      0.53      0.37      2651\n"
+    ],
+    "walltime": 1.2159347534179688e-05,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

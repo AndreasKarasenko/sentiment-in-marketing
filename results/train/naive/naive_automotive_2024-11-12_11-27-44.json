@@ -1,0 +1,23 @@
+{
+    "model": "naive",
+    "dataset": "automotive",
+    "metrics": [
+        0.6738333740532617,
+        0.542528812038796,
+        0.4540514159880029,
+        0.6738333740532617,
+        "              precision    recall  f1-score   support\n\n         1.0       0.00      0.00      0.00       105\n         2.0       0.00      0.00      0.00       111\n         3.0       0.00      0.00      0.00       312\n         4.0       0.00      0.00      0.00       807\n         5.0       0.67      1.00      0.81      2758\n\n    accuracy                           0.67      4093\n   macro avg       0.13      0.20      0.16      4093\nweighted avg       0.45      0.67      0.54      4093\n"
+    ],
+    "walltime": 8.344650268554688e-06,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

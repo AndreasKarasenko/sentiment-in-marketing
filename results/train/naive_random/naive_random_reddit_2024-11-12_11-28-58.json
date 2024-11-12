@@ -1,0 +1,23 @@
+{
+    "model": "naive_random",
+    "dataset": "reddit",
+    "metrics": [
+        0.1501297664204432,
+        0.14552287358714064,
+        0.1718087915490057,
+        0.1501297664204432,
+        "              precision    recall  f1-score   support\n\n           1       0.40      0.26      0.32      1983\n           2       0.05      0.27      0.09       249\n           3       0.04      0.21      0.06       214\n           4       0.10      0.26      0.14       464\n           5       0.00      0.00      0.00      2099\n\n    accuracy                           0.15      5009\n   macro avg       0.12      0.20      0.12      5009\nweighted avg       0.17      0.15      0.15      5009\n"
+    ],
+    "walltime": 0.00017523765563964844,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "model": "naive_random",
+    "dataset": "luxury_beauty",
+    "metrics": [
+        0.09642596644784829,
+        0.06889049126658076,
+        0.05987064858319495,
+        0.09642596644784829,
+        "              precision    recall  f1-score   support\n\n         1.0       0.03      0.26      0.06       223\n         2.0       0.04      0.24      0.08       290\n         3.0       0.10      0.25      0.15       745\n         4.0       0.21      0.23      0.22      1509\n         5.0       0.00      0.00      0.00      4088\n\n    accuracy                           0.10      6855\n   macro avg       0.08      0.20      0.10      6855\nweighted avg       0.06      0.10      0.07      6855\n"
+    ],
+    "walltime": 0.00017523765563964844,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

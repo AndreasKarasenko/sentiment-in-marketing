@@ -1,0 +1,23 @@
+{
+    "model": "naive_random",
+    "dataset": "hotel",
+    "metrics": [
+        0.1285,
+        0.10671677537478134,
+        0.10370941966494505,
+        0.1285,
+        "              precision    recall  f1-score   support\n\n           1       0.04      0.21      0.07       101\n           2       0.07      0.31      0.11       120\n           3       0.14      0.23      0.17       279\n           4       0.28      0.24      0.26       563\n           5       0.00      0.00      0.00       937\n\n    accuracy                           0.13      2000\n   macro avg       0.11      0.20      0.12      2000\nweighted avg       0.10      0.13      0.11      2000\n"
+    ],
+    "walltime": 7.891654968261719e-05,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

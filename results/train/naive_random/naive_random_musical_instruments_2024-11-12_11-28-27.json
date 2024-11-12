@@ -1,0 +1,23 @@
+{
+    "model": "naive_random",
+    "dataset": "musical_instruments",
+    "metrics": [
+        0.07553606237816764,
+        0.050559088285094755,
+        0.04274128117998075,
+        0.07553606237816764,
+        "              precision    recall  f1-score   support\n\n         1.0       0.02      0.18      0.03        51\n         2.0       0.03      0.28      0.05        53\n         3.0       0.07      0.26      0.11       140\n         4.0       0.18      0.23      0.20       411\n         5.0       0.00      0.00      0.00      1397\n\n    accuracy                           0.08      2052\n   macro avg       0.06      0.19      0.08      2052\nweighted avg       0.04      0.08      0.05      2052\n"
+    ],
+    "walltime": 0.00010395050048828125,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

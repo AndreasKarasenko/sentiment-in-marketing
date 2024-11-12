@@ -1,0 +1,23 @@
+{
+    "model": "naive",
+    "dataset": "twitter",
+    "metrics": [
+        0.6451502732240437,
+        0.5059949620594638,
+        0.41621887504105826,
+        0.6451502732240437,
+        "              precision    recall  f1-score   support\n\n           1       0.65      1.00      0.78      1889\n           2       0.00      0.00      0.00       580\n           3       0.00      0.00      0.00       459\n\n    accuracy                           0.65      2928\n   macro avg       0.22      0.33      0.26      2928\nweighted avg       0.42      0.65      0.51      2928\n"
+    ],
+    "walltime": 1.0013580322265625e-05,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "model": "naive",
+    "dataset": "lidl",
+    "metrics": [
+        0.5862828609193714,
+        0.43337490617352664,
+        0.343727593007803,
+        0.5862828609193714,
+        "              precision    recall  f1-score   support\n\n           1       0.00      0.00      0.00      1095\n           2       0.00      0.00      0.00       309\n           3       0.00      0.00      0.00       454\n           4       0.00      0.00      0.00       959\n           5       0.59      1.00      0.74      3992\n\n    accuracy                           0.59      6809\n   macro avg       0.12      0.20      0.15      6809\nweighted avg       0.34      0.59      0.43      6809\n"
+    ],
+    "walltime": 1.4066696166992188e-05,
+    "arguments": {
+        "config_dir": "./config/model_config/search_space.json",
+        "data_dir": "./samples/",
+        "model_dir": "./models/",
+        "optimized_dir": "./config/optimized/",
+        "input_var": "content",
+        "target_var": "label",
+        "verbose": 1,
+        "njobs": 1,
+        "data_config": "./config/data_config/"
+    }
+}
